@@ -4,8 +4,14 @@
   "description": "Teammate finder is a way for gamers to connect, and a vehicle for me to learn how to set up a MEAN application",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,6 +32,7 @@
   "homepage": "https://github.com/Mvcampbell3/find-a-tm#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "if-env": "^1.0.4",
     "mongoose": "^5.7.3"
   },
   "devDependencies": {
