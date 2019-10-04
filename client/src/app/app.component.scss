@@ -1,0 +1,39 @@
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 3px black solid;
+  background-color: slategray;
+
+  a.brand{
+    padding: 2em;
+    font-weight: bolder;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: white;
+  }
+
+  nav{
+    ul{
+      list-style: none;
+      display: flex;
+      padding: 1em;
+
+      li {
+
+        a{
+          text-decoration: none;
+          display: block;
+          padding: 2em;
+          color: white;
+          &:hover{
+            background-color: rgb(65, 63, 43);
+          }
+        }
+      }
+
+
+      
+    }
+  }
+}
