@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt');
+
+const PlatformSchema = new Schema({
+  system: String,
+  own: Boolean,
+  gamerTag: String
+})
 
 const UserSchema = new Schema({
   username: {
@@ -17,7 +24,16 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+
+  platforms: [PlatformSchema],
+
 })
 
-module.exports = User = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
+
+User.prototype.validatePassword = function(password) {
+  return bcrypt.compare(password, this.password);
+}
+
+module.exports = User;
