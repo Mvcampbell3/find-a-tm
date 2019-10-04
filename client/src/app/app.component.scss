@@ -2,7 +2,7 @@ header{
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  border-bottom: 3px black solid;
+  border-bottom: 1px black solid;
   background-color: slategray;
 
   a.brand{
@@ -27,13 +27,10 @@ header{
           padding: 2em;
           color: white;
           &:hover{
-            background-color: rgb(65, 63, 43);
+            background-color: rgb(43, 54, 65);
           }
         }
       }
-
-
-      
     }
   }
 }

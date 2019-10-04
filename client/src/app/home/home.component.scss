@@ -1,0 +1,41 @@
+.container{
+  display: grid;
+  height: calc(100vh - 129.8px);
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+
+  .splash{
+    width: 100%;
+    padding: 1em;
+  }
+
+  .form{
+    width: 100%;
+    padding: 1em;
+
+
+    .input-group{
+      width: 100%;
+
+      input[type=text], input[type=password]{
+        width: 100%;
+        padding: .5em;
+        margin-bottom: .5em;
+
+      }
+    }
+  }
+}
+
+.slideDown{
+  height: 0px;
+  overflow: hidden;
+  animation-name: pop;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pop{
+  0% {height: 0px}
+  100% {height: 63.99px}
+}
