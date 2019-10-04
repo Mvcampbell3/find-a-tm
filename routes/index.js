@@ -3,7 +3,7 @@ const path = require('path')
 const api_routes = require('./api');
 
 router.use('*', (req, res, next) => {
-  console.log("made it to routes folder");
+  console.log("req made it to routes folder");
   next();
 })
 

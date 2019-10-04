@@ -2,7 +2,7 @@ const router = require('express').Router();
 const user_routes = require('./user-routes');
 
 router.use('*', (req, res, next) => {
-  console.log('made it api folder');
+  console.log('req made it api folder');
   next();
 })
 
