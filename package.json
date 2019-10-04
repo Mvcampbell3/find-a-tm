@@ -1,0 +1,35 @@
+{
+  "name": "teammate-finder",
+  "version": "1.0.0",
+  "description": "Teammate finder is a way for gamers to connect, and a vehicle for me to learn how to set up a MEAN application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mvcampbell3/find-a-tm.git"
+  },
+  "keywords": [
+    "MongoDB",
+    "Express",
+    "Angular",
+    "Node",
+    "MEAN"
+  ],
+  "author": "Michael Campbell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mvcampbell3/find-a-tm/issues"
+  },
+  "homepage": "https://github.com/Mvcampbell3/find-a-tm#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.7.3"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.2",
+    "nodemon": "^1.19.3"
+  }
+}
