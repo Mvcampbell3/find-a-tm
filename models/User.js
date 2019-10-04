@@ -26,6 +26,11 @@ const UserSchema = new Schema({
     required: true
   },
 
+  online: {
+    type: Boolean, 
+    default: false
+  },
+
   platforms: [PlatformSchema],
 
 })

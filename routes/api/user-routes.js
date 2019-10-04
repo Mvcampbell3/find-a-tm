@@ -3,6 +3,7 @@ const db = require("../../models");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+//test route
 router.use('*', (req, res, next) => {
   console.log('req made it to user folder');
   next();

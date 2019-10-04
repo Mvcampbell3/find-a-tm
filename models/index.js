@@ -1,3 +1,5 @@
 module.exports = {
-  User: require('./User')
+  User: require('./User'),
+  Game: require('./Game'),
+  Matrix: require('./Matrix')
 }

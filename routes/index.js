@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
   res.json({home: true})
 })
 
-// router.use(function(req, res) {
-//   res.sendFile(path.join(__dirname, '../client/src/index.html'));
-// });
+router.use(function(req, res) {
+  res.sendFile(path.join(__dirname, '../client/src/index.html'));
+});
 
 module.exports = router;
