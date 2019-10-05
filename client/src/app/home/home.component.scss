@@ -1,16 +1,44 @@
 .container{
   display: grid;
-  height: calc(100vh - 129.8px);
   align-items: center;
   grid-template-columns: 1fr 1fr;
+  padding: 2em;
 
   .splash{
     width: 100%;
     padding: 1em;
+
+    h1{
+      text-align: center;
+    }
+
+    p.subtitle{
+      color: lighten(black, 20%);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    p.content{
+      padding: 3em;
+      line-height: 1.5;
+      letter-spacing: .8px;
+      text-indent: 10px;
+    }
+
+    span.end-content{
+      text-align: center;
+      display: block;
+      color: navy; 
+      font-weight: bold;
+    }
   }
 
   .form{
-    width: 100%;
+    width: 70%;
+    min-width: 325px;
+    border: 1px black solid;
+    margin: auto;
+
     padding: 1em;
 
 

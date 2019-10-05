@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +14,12 @@ export class HomeComponent implements OnInit {
   signup: Boolean = false;
 
 
-  constructor() { }
+  constructor(private http: HttpService) { }
 
   ngOnInit() {
+    this.http.getAllUsers().subscribe(users => {
+      console.log(users)
+    })
   }
 
   changeForm() {
@@ -26,6 +30,18 @@ export class HomeComponent implements OnInit {
     console.log(this.signup);
     const { email, password, username } = this;
     console.log(email, password, username)
+
+    // Need to learn more about setting up observables before we can move forward
+    if (!username) {
+      this.http.loginUser(email, password).subscribe(
+        data => {
+          console.log(data);
+        }),
+        error => {
+          console.log('we have an error');
+          console.log(error)
+        }
+    }
   }
 
 }
