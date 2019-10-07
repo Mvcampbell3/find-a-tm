@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 
+import { LoginUser } from "../models/loginUser"
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +16,6 @@ export class HttpService {
   }
 
   loginUser(email, password) {
-    return this._http.post('/api/user/login', {email, password});
+    return this._http.post<LoginUser>('/api/user/login', {email, password});
   }
 }

@@ -71,19 +71,19 @@ router.post('/login', (req, res) => {
       // User email does not exist
       // Keeping err status and message same
       if (!dbUser) {
-        return res.status(401).json({ message: "Incorrect email and/or password" })
-      } 
+        return res.status(401).json({ message: "Incorrect email and/or password", error: "error" })
+      }
       // Get password match from User model
       const match = await dbUser.validatePassword(password);
       // inccorrect password
       if (!match) {
-        return res.status(401).json({ message: "Incorrent email and/or password" })
+        return res.status(401).json({ message: "Incorrent email and/or password", error: "error" })
       }
       // generate token
       jwt.sign({ id: dbUser._id }, process.env.JWT_KEY, { expiresIn: '10m' }, function(err, token) {
         if (err) {
           console.log(err);
-          return res.status(500).json({ error: "Server failed request", message: "Process failed at token assign" });
+          return res.status(500).json({ error: "Server failed request", message: "Process failed at token assign", err });
         }
         // ship token to front end for storage
         res.status(200).json({ success: true, token })
@@ -91,7 +91,7 @@ router.post('/login', (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({error: "Server failed request", message: "Process failed at database find"})
+      res.status(500).json({ error: "Server failed request", message: "Process failed at database find" })
     })
 })
 
