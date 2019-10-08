@@ -9,10 +9,10 @@ app.use(express.json())
 
 require('dotenv').config()
 
-app.use('*', (req, res, next) => {
-  console.log(req.originalUrl);
-  next()
-})
+// app.use('*', (req, res, next) => {
+//   console.log(req.originalUrl);
+//   next()
+// })
 
 app.use(routes)
 

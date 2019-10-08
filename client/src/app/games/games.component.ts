@@ -14,7 +14,7 @@ export class GamesComponent implements OnInit, OnDestroy {
   suscription1: any;
   suscription2: any;
 
-  games: any = [];
+  games:any = [];
 
   constructor(
     private http: HttpService,
@@ -22,13 +22,13 @@ export class GamesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.getUserAuth();
+    // this.getUserAuth();
     this.getGamesList();
   }
 
   ngOnDestroy() {
-    this.suscription1.unsubscribe();
-    this.suscription2.unsubscribe();
+    // this.suscription1.unsubscribe();
+    // this.suscription2.unsubscribe();
   }
 
   getGamesList() {
@@ -37,7 +37,10 @@ export class GamesComponent implements OnInit, OnDestroy {
         console.log(result);
         this.games = result;
       },
-      err => console.log(err),
+      err => {
+        console.log(err);
+        window.location.replace("/")
+      },
       () => console.log("done")
     )
   }

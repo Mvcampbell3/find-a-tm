@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserService {
 
   user: boolean = false;
-  token: string = "";
+  token: string = "this is not loaded";
 
   constructor() { }
 

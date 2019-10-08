@@ -1,7 +1,7 @@
 export interface Game {
   ps4: boolean,
   img_url: string,
-  multiplayer: true,
+  team_game: boolean,
   developer: string,
   reviewed: boolean,
   title: string,

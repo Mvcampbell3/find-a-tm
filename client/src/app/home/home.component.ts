@@ -49,11 +49,19 @@ export class HomeComponent implements OnInit {
           console.log(this.userService.user)
           console.log(this.userService.token);
           // send to new page
+          localStorage.setItem("token-find-tm", JSON.stringify(this.userService.token));
+          window.location.replace("/games")
+
         },
         (error) => {
           console.log('we have an error', error);
         },
-        () => console.log('Http process ended')
+        () => {
+          console.log('Http process ended');
+          if (this.userService.user) {
+            // window.location.replace("/games")
+          }
+        }
       );
     }
   }

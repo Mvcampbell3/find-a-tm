@@ -17,7 +17,7 @@ const GameSchema = new Schema({
     default: false
   },
 
-  multiplayer: {
+  team_game: {
     type: Boolean,
     default: false
   },

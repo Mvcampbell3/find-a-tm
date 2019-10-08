@@ -80,7 +80,7 @@ router.post('/login', (req, res) => {
         return res.status(401).json({ message: "Incorrent email and/or password", error: "error" })
       }
       // generate token
-      jwt.sign({ id: dbUser._id }, process.env.JWT_KEY, { expiresIn: '10m' }, function(err, token) {
+      jwt.sign({ id: dbUser._id }, process.env.JWT_KEY, { expiresIn: '20s' }, function(err, token) {
         if (err) {
           console.log(err);
           return res.status(500).json({ error: "Server failed request", message: "Process failed at token assign", err });
@@ -97,12 +97,13 @@ router.post('/login', (req, res) => {
 
 router.post('/auth', (req, res) => {
   const { token } = req.body;
-  const decoded = jwt.verify(token, process.env.JWT_KEY, (err, done) => {
+  console.log(token);
+  jwt.verify(token, process.env.JWT_KEY, (err, done) => {
     if (err) {
-      throw err;
+      return res.status(404).json({ err });
     }
     console.log(done);
-    res.status(200).json({ ok: true, done})
+    res.status(200).json({ ok: true, done })
   })
 })
 
