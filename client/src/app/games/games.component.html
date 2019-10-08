@@ -1,0 +1,7 @@
+<div *ngFor='let game of games'>
+  <h3>{{ game.title }}</h3>
+  <h4>{{ game.developer }}</h4>
+  <h4>PS4: {{ game.ps4 ? 'Yes' : 'No' }}</h4>
+  <h4>Team Game: {{ game.multiplayer ? 'Yes' : 'No' }}</h4>
+  <img src={{game.img_url}} alt="">
+</div>

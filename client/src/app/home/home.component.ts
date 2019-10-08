@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { LoginUser } from "../models/loginUser";
-import { Observable } from 'rxjs';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -17,38 +17,44 @@ export class HomeComponent implements OnInit {
 
   loginUser: LoginUser;
 
+  constructor(
+    private http: HttpService,
+    public userService: UserService) { }
 
-  constructor(private http: HttpService) { }
+  user = this.userService.user;
 
   ngOnInit() {
     this.http.getAllUsers().subscribe(users => {
       console.log(users)
     })
+
   }
 
   changeForm() {
     this.signup = !this.signup;
   }
 
-  sendInfo(): Observable<LoginUser> {
+  sendInfo() {
     console.log(this.signup);
     const { email, password, username } = this;
     console.log(email, password, username)
 
-    // Need to learn more about setting up observables before we can move forward
     if (!username) {
       this.http.loginUser(email, password).subscribe(
         (data: LoginUser) => {
           console.log(data);
           this.loginUser = data;
-        }),
-        error => {
-          console.log('we have an error', error);
-          return;
+          this.userService.setUser(true, this.loginUser.token)
+          console.log(this.user)
+          console.log(this.userService.user)
+          console.log(this.userService.token);
+          // send to new page
         },
-        () => console.log('Http process ended');
-    } else {
-      return;
+        (error) => {
+          console.log('we have an error', error);
+        },
+        () => console.log('Http process ended')
+      );
     }
   }
 }

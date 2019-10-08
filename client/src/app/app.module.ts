@@ -7,11 +7,17 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { UserService } from './services/user.service';
+import { HttpService } from './services/http.service';
+import { GamesComponent } from './games/games.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    GamesComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +25,10 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserService,
+    HttpService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

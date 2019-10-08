@@ -1,4 +1,4 @@
 export interface LoginUser {
-  success: Boolean,
-  token: String
+  success: boolean,
+  token: string
 }
