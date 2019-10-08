@@ -95,4 +95,15 @@ router.post('/login', (req, res) => {
     })
 })
 
+router.post('/auth', (req, res) => {
+  const { token } = req.body;
+  const decoded = jwt.verify(token, process.env.JWT_KEY, (err, done) => {
+    if (err) {
+      throw err;
+    }
+    console.log(done);
+    res.status(200).json({ ok: true, done})
+  })
+})
+
 module.exports = router;
