@@ -80,7 +80,7 @@ router.post('/login', (req, res) => {
         return res.status(401).json({ message: "Incorrent email and/or password", error: "error" })
       }
       // generate token
-      jwt.sign({ id: dbUser._id }, process.env.JWT_KEY, { expiresIn: '20s' }, function(err, token) {
+      jwt.sign({ id: dbUser._id }, process.env.JWT_KEY, { expiresIn: '20m' }, function(err, token) {
         if (err) {
           console.log(err);
           return res.status(500).json({ error: "Server failed request", message: "Process failed at token assign", err });

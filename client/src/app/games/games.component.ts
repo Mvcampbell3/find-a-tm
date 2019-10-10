@@ -3,6 +3,7 @@ import { HttpService } from "../services/http.service";
 import { UserService } from "../services/user.service";
 import { Observable } from "rxjs";
 import { Game } from "../models/game";
+import { LoginUser } from '../models/loginUser';
 
 @Component({
   selector: 'app-games',
@@ -11,10 +12,9 @@ import { Game } from "../models/game";
 })
 export class GamesComponent implements OnInit, OnDestroy {
 
-  suscription1: any;
-  suscription2: any;
+  gamesSubscription: any;
 
-  games:any = [];
+  games: Game[] = [];
 
   constructor(
     private http: HttpService,
@@ -22,18 +22,16 @@ export class GamesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    // this.getUserAuth();
     this.getGamesList();
   }
 
   ngOnDestroy() {
-    // this.suscription1.unsubscribe();
-    // this.suscription2.unsubscribe();
+    this.gamesSubscription.unsubscribe();
   }
 
   getGamesList() {
-    this.suscription1 = this.http.getAllGames().subscribe(
-      result => {
+    this.gamesSubscription = this.http.getAllGames().subscribe(
+      (result: Array<Game>) => {
         console.log(result);
         this.games = result;
       },
@@ -44,13 +42,4 @@ export class GamesComponent implements OnInit, OnDestroy {
       () => console.log("done")
     )
   }
-
-  getUserAuth() {
-    this.suscription2 = this.http.authUser().subscribe(
-      result => console.log(result),
-      err => console.log(err),
-      () => console.log("done")
-    )
-  }
-
 }
