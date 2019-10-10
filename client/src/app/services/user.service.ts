@@ -20,8 +20,9 @@ export class UserService {
   }
 
   logoutUser() {
+    this.updateUserOffline();
     localStorage.removeItem('token-find-tm');
-    window.location.replace('/')
+    // window.location.replace('/')
   }
 
   checkUser() {
@@ -33,11 +34,12 @@ export class UserService {
         result => {
           console.log(result);
           this.user.next(true)
+          // Make call to update online of user
+          this.updateUserOnline(token)
         },
         (err) => {
           console.log(err);
           this.user.next(false)
-
         }
       )
     } else {
@@ -45,4 +47,20 @@ export class UserService {
     }
   }
 
+  updateUserOnline(token) {
+    this.http.setUserOnline(token).subscribe(
+      data => console.log(data),
+      err => console.log(err)
+    )
+  }
+
+  updateUserOffline() {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    if (token) {
+      this.http.setUserOffline(token).subscribe(
+        data => console.log(data),
+        err => console.log(err)
+      )
+    }
+  }
 }

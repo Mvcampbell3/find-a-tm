@@ -36,6 +36,17 @@ export class HttpService {
     return this._http.get("/api/user/auth", { headers })
   }
 
+  setUserOnline(token) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
+    return this._http.put('/api/user/online', { online: true }, { headers })
+  }
+
+  setUserOffline(token) {
+    console.log(token);
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
+    return this._http.put('/api/user/online', { online: false }, { headers })
+  }
+
   getUserProfile(token) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
     return this._http.get("/api/user/profile", { headers })

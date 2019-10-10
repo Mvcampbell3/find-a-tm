@@ -102,10 +102,7 @@ router.get('/auth', checkAuth, (req, res) => {
 
 router.get('/profile', checkAuth, (req, res) => {
   console.log(req.userId)
-  // const userInfo = await db.User.findById(req.userId)
-  // const matrixInfo = await db.Matrix.find({userID:req.userId}).populate('gameID')
-
-  const promises = [db.User.findById(req.userId).select('-password'), db.Matrix.find({userID:req.userId}).populate('gameID')];
+  const promises = [db.User.findById(req.userId).select('-password'), db.Matrix.find({ userID: req.userId }).populate('gameID')];
   Promise.all(promises)
     .then(results => {
       const profile = {
@@ -117,6 +114,24 @@ router.get('/profile', checkAuth, (req, res) => {
     .catch(err => {
       res.status(422).json(err)
     })
+})
+
+router.put('/online', checkAuth, (req, res) => {
+  console.log(typeof req.body.online);
+  console.log(req.userId)
+  db.User.findById(req.userId)
+    .then(user => {
+      user.online = true;
+      user.save()
+        .then(updated => {
+          res.status(200).json(updated)
+        })
+        .catch(err => res.status(422).json(err))
+    })
+    .catch(err => {
+      res.status(404).json({ msg: 'user not found' })
+    })
+
 })
 
 module.exports = router;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { UserService } from './services/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'client';
   userCheck = this.userService.user.subscribe((data: boolean) => this.user = data);
   user: boolean;
@@ -16,6 +16,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.userService.checkUser();
+  }
+
+  ngOnDestroy() {
+    this.userService.updateUserOffline()
   }
 
   logoutUser() {
