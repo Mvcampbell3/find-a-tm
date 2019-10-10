@@ -100,4 +100,23 @@ router.get('/auth', checkAuth, (req, res) => {
   res.status(200).json({ user: true, id: req.userId })
 })
 
+router.get('/profile', checkAuth, (req, res) => {
+  console.log(req.userId)
+  // const userInfo = await db.User.findById(req.userId)
+  // const matrixInfo = await db.Matrix.find({userID:req.userId}).populate('gameID')
+
+  const promises = [db.User.findById(req.userId), db.Matrix.find({userID:req.userId}).populate('gameID')];
+  Promise.all(promises)
+    .then(results => {
+      const profile = {
+        userInfo: results[0],
+        matrixInfo: results[1]
+      }
+      res.status(200).json(profile)
+    })
+    .catch(err => {
+      res.status(422).json(err)
+    })
+})
+
 module.exports = router;
