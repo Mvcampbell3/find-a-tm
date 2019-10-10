@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { UserService } from './services/user.service';
 import { HttpService } from './services/http.service';
 import { GamesComponent } from './games/games.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -17,7 +18,8 @@ import { GamesComponent } from './games/games.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    GamesComponent
+    GamesComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

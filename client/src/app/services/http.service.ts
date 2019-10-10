@@ -35,4 +35,9 @@ export class HttpService {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
     return this._http.get("/api/user/auth", { headers })
   }
+
+  getUserProfile(token) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
+    return this._http.get("/api/user/profile", { headers })
+  }
 }

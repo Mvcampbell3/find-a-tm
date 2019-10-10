@@ -3,8 +3,8 @@
 
   <nav>
     <ul>
-      <li><a routerLink="/games">Games</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
+      <li *ngIf="user"><a routerLink="/games">Games</a></li>
+      <li *ngIf="user"><a routerLink="/profile">Profile</a></li>
       <li *ngIf="user"><a (click)="logoutUser()">Logout</a></li>
 
     </ul>
