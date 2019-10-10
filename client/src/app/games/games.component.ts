@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpService } from "../services/http.service";
 import { UserService } from "../services/user.service";
 import { Game } from "../models/game";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-games',
@@ -16,7 +17,8 @@ export class GamesComponent implements OnInit, OnDestroy {
 
   constructor(
     private http: HttpService,
-    public userService: UserService
+    public userService: UserService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -35,7 +37,7 @@ export class GamesComponent implements OnInit, OnDestroy {
       },
       err => {
         console.log(err);
-        window.location.replace("/")
+        this.router.navigate(["/"])
       },
       () => console.log("done")
     )

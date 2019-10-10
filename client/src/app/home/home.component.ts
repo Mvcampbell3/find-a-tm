@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { LoginUser } from "../models/loginUser";
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private http: HttpService,
-    public userService: UserService) { }
+    public userService: UserService,
+    private router:Router) { }
 
   user = this.userService.user;
 
@@ -59,6 +61,7 @@ export class HomeComponent implements OnInit {
         localStorage.setItem("token-find-tm", JSON.stringify(this.userService.token));
         // need to find how to redirect inside angular
         // window.location.replace("/games")
+        this.router.navigate(['/games'])
 
       },
       (error) => {

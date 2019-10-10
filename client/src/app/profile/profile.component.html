@@ -1,1 +1,6 @@
-<p>profile works!</p>
+<div class="profileHolder" *ngIf='userInfo'>
+  <h3>{{userInfo.username}}</h3>
+  <ul>
+    <li *ngFor='let matrix of matrixInfo'>{{matrix.gameID.title}}</li>
+  </ul>
+</div>

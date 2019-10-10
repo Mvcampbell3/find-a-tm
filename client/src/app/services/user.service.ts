@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from "rxjs";
 import { HttpService } from "./http.service";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class UserService {
   user = new Subject();
   token: string = "this is not loaded";
 
-  constructor(private http: HttpService) {
+  constructor(private http: HttpService, private router: Router) {
   }
 
   setUser(userBoolean: boolean, token?: string): void {
@@ -36,6 +37,7 @@ export class UserService {
         (err) => {
           console.log(err);
           this.user.next(false)
+
         }
       )
     } else {

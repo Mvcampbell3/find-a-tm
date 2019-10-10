@@ -9,7 +9,8 @@ import { HttpService } from '../services/http.service';
 })
 export class ProfileComponent implements OnInit {
 
-  userID: string;
+  userInfo: object;
+  matrixInfo: object[];
 
 
   constructor(public userService: UserService, private http: HttpService) { }
@@ -17,7 +18,12 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     const token = JSON.parse(localStorage.getItem('token-find-tm'))
     this.http.getUserProfile(token).subscribe(
-      data => console.log(data),
+      (data:any) => {
+        console.log(data)
+        console.log(data.userInfo)
+        this.userInfo = data.userInfo;
+        this.matrixInfo = data.matrixInfo;
+      },
       err => console.log(err)
     )
   }

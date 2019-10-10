@@ -81,7 +81,7 @@ router.post('/login', (req, res) => {
         return res.status(401).json({ message: "Incorrent email and/or password", error: "error" })
       }
       // generate token
-      jwt.sign({ id: dbUser._id }, process.env.JWT_KEY, { expiresIn: '20m' }, function(err, token) {
+      jwt.sign({ id: dbUser._id }, process.env.JWT_KEY, { expiresIn: '2h' }, function(err, token) {
         if (err) {
           console.log(err);
           return res.status(500).json({ error: "Server failed request", message: "Process failed at token assign", err });
@@ -105,7 +105,7 @@ router.get('/profile', checkAuth, (req, res) => {
   // const userInfo = await db.User.findById(req.userId)
   // const matrixInfo = await db.Matrix.find({userID:req.userId}).populate('gameID')
 
-  const promises = [db.User.findById(req.userId), db.Matrix.find({userID:req.userId}).populate('gameID')];
+  const promises = [db.User.findById(req.userId).select('-password'), db.Matrix.find({userID:req.userId}).populate('gameID')];
   Promise.all(promises)
     .then(results => {
       const profile = {
