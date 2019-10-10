@@ -2,6 +2,7 @@ const router = require('express').Router();
 const db = require("../../models");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const checkAuth = require("../../middleware/checkAuth")
 
 //test route
 router.use('*', (req, res, next) => {
@@ -95,16 +96,8 @@ router.post('/login', (req, res) => {
     })
 })
 
-router.post('/auth', (req, res) => {
-  const { token } = req.body;
-  console.log(token);
-  jwt.verify(token, process.env.JWT_KEY, (err, done) => {
-    if (err) {
-      return res.status(404).json({ err });
-    }
-    console.log(done);
-    res.status(200).json({ ok: true, done })
-  })
+router.get('/auth', checkAuth, (req, res) => {
+  res.status(200).json({ user: true, id: req.userId })
 })
 
 module.exports = router;

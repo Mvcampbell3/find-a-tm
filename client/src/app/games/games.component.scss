@@ -1,0 +1,20 @@
+.game{
+  border: 1px black solid;
+  width: 256px;
+
+  img{
+    width: 252px;
+    display: block;
+    margin: auto;
+    height: auto;
+  }
+
+  h3{
+    text-transform: capitalize;
+  }
+
+  h4{
+    font-size: 14px;
+  }
+}
+

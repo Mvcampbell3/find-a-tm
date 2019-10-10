@@ -9,6 +9,7 @@ module.exports = (req, res, next) => {
     next()
   } catch (err) {
     console.log(err);
+    req.userId = undefined;
     res.status(401).json("Unauthorized");
   }
 }

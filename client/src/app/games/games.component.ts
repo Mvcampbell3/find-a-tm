@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpService } from "../services/http.service";
 import { UserService } from "../services/user.service";
-import { Observable } from "rxjs";
 import { Game } from "../models/game";
-import { LoginUser } from '../models/loginUser';
 
 @Component({
   selector: 'app-games',

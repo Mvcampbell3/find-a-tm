@@ -24,45 +24,49 @@ export class HomeComponent implements OnInit {
   user = this.userService.user;
 
   ngOnInit() {
-    this.http.getAllUsers().subscribe(users => {
-      console.log(users)
-    })
-
+    // this.http.getAllUsers().subscribe(users => {
+    //   console.log(users)
+    // })
   }
 
   changeForm() {
     this.signup = !this.signup;
   }
 
-  sendInfo() {
-    console.log(this.signup);
-    const { email, password, username } = this;
-    console.log(email, password, username)
+  postSignupUser() {
+    const { email, username, password } = this;
+    this.http.signupUser(email, username, password).subscribe(
+      (data:any) => {
+        console.log(data);
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
 
-    if (!username) {
-      this.http.loginUser(email, password).subscribe(
-        (data: LoginUser) => {
-          console.log(data);
-          this.loginUser = data;
-          this.userService.setUser(true, this.loginUser.token)
-          console.log(this.user)
-          console.log(this.userService.user)
-          console.log(this.userService.token);
-          // send to new page
-          localStorage.setItem("token-find-tm", JSON.stringify(this.userService.token));
-          window.location.replace("/games")
+  postLoginUser() {
+    const { email, password } = this;
+    this.http.loginUser(email, password).subscribe(
+      (data: LoginUser) => {
+        console.log(data);
+        this.loginUser = data;
+        this.userService.setUser(true, this.loginUser.token)
+        console.log(this.user)
+        console.log(this.userService.user)
+        console.log(this.userService.token);
+        // send to new page
+        localStorage.setItem("token-find-tm", JSON.stringify(this.userService.token));
+        // need to find how to redirect inside angular
+        // window.location.replace("/games")
 
-        },
-        (error) => {
-          console.log('we have an error', error);
-        },
-        () => {
-          console.log('Http process ended');
-          if (this.userService.user) {
-            // window.location.replace("/games")
-          }
-        }
-      );
-    }
+      },
+      (error) => {
+        console.log('we have an error', error);
+      },
+      () => {
+        console.log('Http process ended');
+      }
+    );
   }
 }

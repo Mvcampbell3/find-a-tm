@@ -25,7 +25,7 @@
     </div>
 
     <div class="input-group">
-      <button (click)="sendInfo()">Send</button>
+      <button (click)="signup ? postSignupUser() : postLoginUser()">Send</button>
       <button (click)="changeForm()">{{signup ? "Already a member?":"Need to Sign Up?"}}</button>
     </div>
   </div>

@@ -19,10 +19,20 @@ export class HttpService {
     return this._http.post('/api/user/login', { email, password });
   }
 
+  signupUser(email, username, password) {
+    return this._http.post('/api/user/signup', { email, username, password })
+  }
+
   getAllGames() {
     const token = JSON.parse(localStorage.getItem('token-find-tm'))
     console.log(token)
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
-    return this._http.get("/api/game/all", { headers})
+    return this._http.get("/api/game/all", { headers })
+  }
+
+  checkAuth(token) {
+    console.log(token)
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
+    return this._http.get("/api/user/auth", { headers })
   }
 }
