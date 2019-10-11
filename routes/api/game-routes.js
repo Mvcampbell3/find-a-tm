@@ -23,15 +23,15 @@ router.delete('/testdeleteall', (req, res) => {
     .catch(err => res.status(500).json(err))
 })
 
-router.post('/newgame', (req, res) => {
-  const { title, developer, ps4, team_game, img_url } = req.body;
+router.post('/newgame', checkAuth, (req, res) => {
+  const { title, developer, ps4, team_game } = req.body;
 
   const newGame = new db.Game({
     title,
     developer,
     ps4,
     team_game,
-    img_url
+    userId: req.userId
   })
 
   newGame.save()

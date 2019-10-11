@@ -30,6 +30,11 @@ const GameSchema = new Schema({
   reviewed: {
     type: Boolean,
     default: false
+  },
+
+  userId: {
+    type: String,
+    required: true
   }
 })
 

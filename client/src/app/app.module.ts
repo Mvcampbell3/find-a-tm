@@ -12,8 +12,6 @@ import { HttpService } from './services/http.service';
 import { GamesComponent } from './games/games.component';
 import { ProfileComponent } from './profile/profile.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
