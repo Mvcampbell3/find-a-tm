@@ -26,9 +26,6 @@ export class HomeComponent implements OnInit {
   user = this.userService.user;
 
   ngOnInit() {
-    // this.http.getAllUsers().subscribe(users => {
-    //   console.log(users)
-    // })
   }
 
   changeForm() {
@@ -54,15 +51,9 @@ export class HomeComponent implements OnInit {
         console.log(data);
         this.loginUser = data;
         this.userService.setUser(true, this.loginUser.token)
-        console.log(this.user)
-        console.log(this.userService.user)
-        console.log(this.userService.token);
-        // send to new page
         localStorage.setItem("token-find-tm", JSON.stringify(this.userService.token));
-        // need to find how to redirect inside angular
-        // window.location.replace("/games")
+        this.userService.updateUserOnline()
         this.router.navigate(['/games'])
-
       },
       (error) => {
         console.log('we have an error', error);

@@ -7,7 +7,6 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'client';
   userCheck = this.userService.user.subscribe((data: boolean) => this.user = data);
   user: boolean;
   constructor(public userService: UserService) {
@@ -19,10 +18,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.userService.updateUserOffline()
   }
 
   logoutUser() {
     this.userService.logoutUser();
   }
+
 }

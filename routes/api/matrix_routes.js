@@ -12,6 +12,12 @@ router.get('/all', (req, res) => {
     .catch(err => res.status(500).json(err));
 })
 
+router.delete('/testdeleteall', (req, res) => {
+  db.Matrix.remove()
+    .then(result => res.status(200).json(result))
+    .catch(err => res.status(500).json(err))
+})
+
 router.post('/newmatrix', (req, res) => {
   const { userID, gameID, platform, selfRating } = req.body;
 

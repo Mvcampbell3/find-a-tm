@@ -116,22 +116,25 @@ router.get('/profile', checkAuth, (req, res) => {
     })
 })
 
-router.put('/online', checkAuth, (req, res) => {
-  console.log(typeof req.body.online);
-  console.log(req.userId)
+router.put('/updateonline', checkAuth, (req, res) => {
+  console.log(req.body.date);
   db.User.findById(req.userId)
     .then(user => {
-      user.online = true;
+      user.lastOnline = req.body.date;
       user.save()
-        .then(updated => {
-          res.status(200).json(updated)
+        .then(result => {
+          console.log(result);
+          res.status(200).json(result)
         })
-        .catch(err => res.status(422).json(err))
+        .catch(err => {
+          console.log(err);
+          res.status(500).json(err)
+        })
     })
     .catch(err => {
-      res.status(404).json({ msg: 'user not found' })
+      console.log(err);
+      res.status(404).json(err)
     })
-
 })
 
 module.exports = router;

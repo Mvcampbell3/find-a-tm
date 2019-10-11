@@ -20,22 +20,21 @@ export class UserService {
   }
 
   logoutUser() {
-    this.updateUserOffline();
+    this.user.next(false);
     localStorage.removeItem('token-find-tm');
-    // window.location.replace('/')
+    this.router.navigate(['/'])
   }
 
   checkUser() {
     const token = JSON.parse(localStorage.getItem('token-find-tm'));
-    console.log(token);
     if (token) {
       console.log("token is here")
       this.http.checkAuth(token).subscribe(
         result => {
           console.log(result);
           this.user.next(true)
-          // Make call to update online of user
-          this.updateUserOnline(token)
+          // Make call to update last online date
+          this.updateUserOnline();
         },
         (err) => {
           console.log(err);
@@ -47,20 +46,13 @@ export class UserService {
     }
   }
 
-  updateUserOnline(token) {
-    this.http.setUserOnline(token).subscribe(
-      data => console.log(data),
+  updateUserOnline() {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    this.http.updateUserOnline(token).subscribe(
+      result => console.log(result),
       err => console.log(err)
     )
   }
 
-  updateUserOffline() {
-    const token = JSON.parse(localStorage.getItem('token-find-tm'));
-    if (token) {
-      this.http.setUserOffline(token).subscribe(
-        data => console.log(data),
-        err => console.log(err)
-      )
-    }
-  }
+  
 }

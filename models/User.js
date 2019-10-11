@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
+const moment = require('moment');
 
 const PlatformSchema = new Schema({
   system: String,
@@ -26,13 +27,18 @@ const UserSchema = new Schema({
     required: true
   },
 
-  online: {
-    type: Boolean, 
-    default: false
+  lastOnline: {
+    type: String, 
+    default: moment().format('x')
   },
 
   platforms: [PlatformSchema],
 
+})
+
+UserSchema.pre('save', function(next) {
+  this.lastOnline = moment().format('x');
+  next();
 })
 
 const User = mongoose.model('User', UserSchema);

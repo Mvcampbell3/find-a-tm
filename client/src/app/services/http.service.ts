@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
-import { Game } from "../models/game";
-
 @Injectable({
   providedIn: 'root'
 })
@@ -36,15 +34,9 @@ export class HttpService {
     return this._http.get("/api/user/auth", { headers })
   }
 
-  setUserOnline(token) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    return this._http.put('/api/user/online', { online: true }, { headers })
-  }
-
-  setUserOffline(token) {
-    console.log(token);
+  updateUserOnline(token) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
-    return this._http.put('/api/user/online', { online: false }, { headers })
+    return this._http.put('/api/user/updateonline', {date: Date.now()} , { headers })
   }
 
   getUserProfile(token) {
