@@ -12,8 +12,10 @@ import { Router } from "@angular/router";
 export class GamesComponent implements OnInit, OnDestroy {
 
   gamesSubscription: any;
+  profileSubscription: any;
 
   games: Game[] = [];
+  gameIDs: String[] = [];
 
   constructor(
     private http: HttpService,
@@ -23,10 +25,12 @@ export class GamesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getGamesList();
+    this.getUserProfile();
   }
 
   ngOnDestroy() {
     this.gamesSubscription.unsubscribe();
+    this.profileSubscription.unsubscribe();
   }
 
   getGamesList() {
@@ -38,8 +42,23 @@ export class GamesComponent implements OnInit, OnDestroy {
       err => {
         console.log(err);
         this.router.navigate(["/"])
+      }
+    )
+  }
+
+  getUserProfile() {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    this.profileSubscription = this.http.getUserGamesList(token).subscribe(
+      (result: any) => {
+        console.log(result);
+        const matrixes = result.matrixInfo;
+        this.gameIDs = [];
+        matrixes.forEach((matrix) => this.gameIDs.push(matrix.gameID))
+        console.log(this.gameIDs)
       },
-      () => console.log("done")
+      err => {
+        console.log(err)
+      }
     )
   }
 }

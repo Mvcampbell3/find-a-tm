@@ -23,13 +23,11 @@ export class HttpService {
 
   getAllGames() {
     const token = JSON.parse(localStorage.getItem('token-find-tm'))
-    console.log(token)
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
     return this._http.get("/api/game/all", { headers })
   }
 
   checkAuth(token) {
-    console.log(token)
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
     return this._http.get("/api/user/auth", { headers })
   }
@@ -42,5 +40,10 @@ export class HttpService {
   getUserProfile(token) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
     return this._http.get("/api/user/profile", { headers })
+  }
+
+  getUserGamesList(token) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
+    return this._http.get("/api/user/gameList", { headers })
   }
 }

@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const db = require('../../models')
+const db = require('../../models');
+const checkAuth = require('../../middleware/checkAuth');
 
 router.use('*', (req, res, next) => {
   console.log('req made it to matrix folder');
@@ -18,11 +19,11 @@ router.delete('/testdeleteall', (req, res) => {
     .catch(err => res.status(500).json(err))
 })
 
-router.post('/newmatrix', (req, res) => {
+router.post('/newmatrix', checkAuth, (req, res) => {
   const { userID, gameID, platform, selfRating } = req.body;
 
   const newMatrix = new db.Matrix({
-    userID,
+    userID: req.userId,
     gameID,
     platform,
     selfRating

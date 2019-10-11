@@ -116,6 +116,21 @@ router.get('/profile', checkAuth, (req, res) => {
     })
 })
 
+router.get('/gamelist', checkAuth, (req, res) => {
+  const promises = [db.User.findById(req.userId).select('-password'), db.Matrix.find({ userID: req.userId })];
+  Promise.all(promises)
+    .then(results => {
+      const profile = {
+        userInfo: results[0],
+        matrixInfo: results[1]
+      }
+      res.status(200).json(profile)
+    })
+    .catch(err => {
+      res.status(422).json(err)
+    })
+})
+
 router.put('/updateonline', checkAuth, (req, res) => {
   console.log(req.body.date);
   db.User.findById(req.userId)
