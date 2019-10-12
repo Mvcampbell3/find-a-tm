@@ -1,20 +1,96 @@
+.gameHolder{
+  width: fit-content;
+  margin: 1em auto;
+  display: grid;
+  grid-template-columns: 300px 300px;
+  column-gap: 20px;
+  justify-items: center;
+}
+
 .game{
-  border: 1px black solid;
-  width: 256px;
+  width: 300px;
+  background-color: rgb(241, 241, 241);
+  padding: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0px 10px 10px rgba(143, 143, 143, 0.164);
+  transition: box-shadow .25s;
+
+  &:hover{
+    box-shadow: 0 0 0 rgb(100, 100, 100);
+    transition: box-shadow .25s;
+  }
+  
+  .game-top{
+    display: block;
+    width: 256px;
+    margin: 0 auto;
+    line-height: .5em;
+    border-radius: 10px;
+    overflow: hidden;
+  }
 
   img{
-    width: 252px;
     display: block;
+    width: 256px;
     margin: auto;
-    height: auto;
+    padding: 0;
+    box-sizing: border-box;
+
   }
 
   h3{
     text-transform: capitalize;
+    margin-bottom: 1.5em;
   }
 
   h4{
     font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 400;
+  }
+
+  .game-body{
+    width: 256px;
+    margin: 0 auto;
+    padding: 30px 0;
+  }
+
+  .game-details{
+    border-radius: 5px;
+    background-color: rgb(247, 247, 247);
+    border-radius: 5px;
+    padding: 3px;
+    padding-left: 10px;
+  }
+
+  .buttonArea{
+    width: 256px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+    .gameBtn{
+      width: 48%;
+      border: 1px black solid;
+      padding: 5px 7px;
+      background-color: white;
+      transition: all, .3s;
+
+      &:hover{
+        background-color: #333;
+        color: white;
+        border-radius: 10px;
+        transition: all, .3s;
+      }
+
+      &:active{
+        transform: scale(.95);
+      }
+
+      &:focus{
+        outline: none;
+      }
+    }
   }
 }
 

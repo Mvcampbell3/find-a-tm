@@ -1,12 +1,11 @@
 header{
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  border-bottom: 1px black solid;
+  align-items: center;
   background-color: slategray;
 
   a.brand{
-    padding: 1em;
+    padding: .5em;
     font-weight: bolder;
     font-size: 1.5em;
     text-decoration: none;
@@ -23,7 +22,7 @@ header{
         a{
           text-decoration: none;
           display: block;
-          padding: 2em;
+          padding: 1.5em;
           color: white;
           &:hover{
             background-color: rgb(43, 54, 65);

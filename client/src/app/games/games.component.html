@@ -1,12 +1,20 @@
 <div class="gameHolder" *ngIf='games.length > 0'>
   <div *ngFor='let game of games' class="game">
-    <img src={{game.img_url}} alt="">
-    <h3>{{ game.title }}</h3>
-    <h4>{{ game.developer }}</h4>
-    <h4>PS4: {{ game.ps4 ? 'Yes' : 'No' }}</h4>
-    <h4>Team Game: {{ game.team_game ? 'Yes' : 'No' }}</h4>
+    <div class="game-top">
+      <img src={{game.img_url}} alt="">
+    </div>
+    <div class="game-body">
+      <h3>{{ game.title }}</h3>
+      <div class="game-details">
+        <h4>{{ game.developer }}</h4>
+        <h4>PS4: {{ game.ps4 ? 'Yes' : 'No' }}</h4>
+        <h4>Team Game: {{ game.team_game ? 'Yes' : 'No' }}</h4>
+      </div>
+
+    </div>
+
     <div class="buttonArea">
-      <button *ngIf='gameIDs.indexOf(game._id) === -1' class="gamebtn">Add to Games</button>
+      <button *ngIf='gameIDs.indexOf(game._id) === -1' class="gameBtn">Add to Games</button>
       <button class="gameBtn">View Players</button>
     </div>
   </div>
