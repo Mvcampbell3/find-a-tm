@@ -6,28 +6,32 @@
       At Teammate Finder, our goal to provide a safe place for gamers to find people to team up. To get started, all you
       need to do is create an account, or log in if you are already signed up. If you want to learn more about what our
       mission is, please visit our <strong>mission</strong> page. <br><span class="end-content">Good Luck!</span></p>
+    <button class="showBtn" (click)='changeModal()'>Login</button>
   </div>
 
-  <div class="form">
-    <div class="input-group">
-      <label for="email">Email</label><br>
-      <input type="text" name="email" id="emailInput" [(ngModel)]="email">
-    </div>
+  <div class="modalLogin" *ngIf='showModal' (click)='hideModal($event)'>
+    <div class="form">
+      <div class="input-group">
+        <label for="email">Email</label><br>
+        <input type="text" name="email" id="emailInput" [(ngModel)]="email">
+      </div>
 
-    <div class="input-group slideDown" *ngIf=(signup)>
-      <label for="username">Username</label><br>
-      <input type="text" name="username" id="usernameInput" [(ngModel)]="username">
-    </div>
+      <div class="input-group slideDown" *ngIf=(signup)>
+        <label for="username">Username</label><br>
+        <input type="text" name="username" id="usernameInput" [(ngModel)]="username">
+      </div>
 
-    <div class="input-group">
-      <label for="password">Password</label><br>
-      <input type="password" name="password" id="passwordInput" [(ngModel)]="password">
-    </div>
+      <div class="input-group">
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="passwordInput" [(ngModel)]="password">
+      </div>
 
-    <div class="input-group">
-      <button (click)="signup ? postSignupUser() : postLoginUser()">Send</button>
-      <button (click)="changeForm()">{{signup ? "Already a member?":"Need to Sign Up?"}}</button>
+      <div class="input-group">
+        <button (click)="signup ? postSignupUser() : postLoginUser()">Send</button>
+        <button (click)="changeForm()">{{signup ? "Already a member?":"Need to Sign Up?"}}</button>
+      </div>
     </div>
   </div>
+
 
 </div>

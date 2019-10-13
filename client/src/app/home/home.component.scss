@@ -1,11 +1,8 @@
 .container{
-  display: grid;
-  align-items: center;
-  grid-template-columns: 1fr 1fr;
-  padding: 2em;
-
   .splash{
-    width: 100%;
+    width: 70%;
+    min-width: 350px;
+    margin: 0 auto;
     padding: 1em;
 
     h1{
@@ -19,7 +16,7 @@
     }
 
     p.content{
-      padding: 3em;
+      padding: 1em;
       line-height: 1.5;
       letter-spacing: .8px;
       text-indent: 10px;
@@ -31,35 +28,67 @@
       color: navy; 
       font-weight: bold;
     }
-  }
 
-  .form{
-    width: 70%;
-    min-width: 325px;
-    border: 1px black solid;
-    margin: auto;
+    .showBtn{
+      width: 30%;
+      min-width: 75px;
+      padding: 1em 0;
+      display: block;
+      margin: 0 auto;
+      border: 1px black solid;
+      border-radius: 10px;
+      background-color: #f3f3f3;
+      transform: all, .25s;
 
-    padding: 1em;
+      &:hover{
+        background-color: #333;
+        color: white;
+        transform: all, .25s
+      }
 
+      &:active{
+        transform: scale(.90);
+      }
 
-    .input-group{
-      width: 100%;
-
-      input[type=text], input[type=password]{
-        width: 100%;
-        padding: .5em;
-        margin-bottom: .5em;
-
+      &:focus{
+        outline: none;
       }
     }
   }
+
+  .modalLogin{
+    position: absolute;
+    top: 0;
+    background-color: rgba(51, 51, 51, 0.856);
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+
+    .form{
+      width: 350px;
+      padding: 2em 1em;
+      background-color: #ddd; 
+      border-radius: 10px;
+      .input-group{
+        width: 100%;
+  
+        input[type=text], input[type=password]{
+          width: 100%;
+          padding: .5em;
+          margin-bottom: .5em;
+        }
+      }
+    }
+  }
+  
 }
 
 .slideDown{
   height: 0px;
   overflow: hidden;
   animation-name: pop;
-  animation-duration: 1s;
+  animation-duration: .3s;
   animation-fill-mode: forwards;
 }
 

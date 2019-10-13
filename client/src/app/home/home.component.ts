@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   username: String = "";
   signup: Boolean = false;
 
+  showModal: Boolean = false;
   loginUser: LoginUser;
 
   constructor(
@@ -30,6 +31,17 @@ export class HomeComponent implements OnInit {
 
   changeForm() {
     this.signup = !this.signup;
+  }
+
+  changeModal() {
+    this.showModal = !this.showModal;
+  }
+
+  hideModal(event) {
+    if (event.target.classList.value === 'modalLogin') {
+      this.showModal = false;
+      this.signup = false;
+    }
   }
 
   postSignupUser() {
