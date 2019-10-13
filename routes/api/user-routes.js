@@ -133,7 +133,7 @@ router.get('/gamelist', checkAuth, (req, res) => {
 
 router.put('/updateonline', checkAuth, (req, res) => {
   console.log(req.body.date);
-  db.User.findById(req.userId)
+  db.User.findById(req.userId).select("-password")
     .then(user => {
       user.lastOnline = req.body.date;
       user.save()

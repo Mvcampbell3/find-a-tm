@@ -1,0 +1,69 @@
+.profileHolder{
+  width: 100%;
+  min-height: calc(100vh - 69.6px);
+  display: grid;
+  grid-template-columns: 300px auto;
+}
+
+.leftSide{
+  background-color: #dfdfdf;
+}
+
+.matrixGame{
+  padding: 10px;
+  background-color: lightcyan;
+  width: 80%;
+  margin: 1em auto 0 auto;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.192);
+
+  .game-title{
+    font-weight: bolder;
+    font-size: 18px;
+    text-transform: capitalize;
+  }
+
+  .game-platform{
+    font-size: 12px;
+  }
+
+  .game-gamerTag{
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .game-rating {
+    color: #333;
+  }
+}
+
+.addMatrix{
+  width: 40%;
+  min-width: 200px;
+  margin: 1em auto;
+  display: block;
+  background-color: white;
+  border: 1px black solid;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all, .25s;
+
+
+  &:hover{
+    background-color: #333;
+    color: white;
+    transition: all, .25s;
+  }
+
+  &:active{
+    transform: scale(.90);
+  }
+
+  &:focus{
+    outline: none;
+  }
+}
+

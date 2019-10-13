@@ -1,6 +1,26 @@
 <div class="profileHolder" *ngIf='userInfo'>
-  <h3>{{userInfo.username}}</h3>
-  <ul>
-    <li *ngFor='let matrix of matrixInfo'>{{matrix.gameID.title}}</li>
-  </ul>
+  <div class="leftSide">
+    <div class="playerInfo">
+      <h3>{{ userInfo.username }}</h3>
+
+      <div class="inputGroup">
+        platforms:
+        <div *ngFor='let platform of userInfo.platforms' class="platformGroup">
+          <p>{{platform.system}}: {{platform.gamerTag}}</p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="RightSide">
+    <div class="matrixGame" *ngFor='let matrix of matrixInfo'>
+        <span class="game-title">{{matrix.gameID.title}}</span>
+        <span class="game-platform">system: {{matrix.platform}}</span>
+        <span class="game-gamerTag">tag: {{matrix.gamerTag}}</span> 
+        <span class="game-rating">skill: {{matrix.selfRating}}</span>
+    </div>
+    <button class="addMatrix">Add Game</button>
+  </div>
+  
 </div>

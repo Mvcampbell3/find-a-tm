@@ -12,6 +12,9 @@ export class ProfileComponent implements OnInit {
   userInfo: object;
   matrixInfo: object[];
 
+  newGame: string = '';
+  newRating: number = 0;
+
 
   constructor(public userService: UserService, private http: HttpService) { }
 
