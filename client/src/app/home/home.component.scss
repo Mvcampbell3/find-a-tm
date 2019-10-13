@@ -1,5 +1,12 @@
 .container{
+  height: calc(100vh - 69.8px);
+  padding: 50px;
+  background: url('https://images.unsplash.com/photo-1533381309471-b8e57002fc47?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1907&q=80');
+  background-size: cover;
+  background-repeat: no-repeat;
   .splash{
+    background-color: rgba(255, 255, 255, 0.89);
+    border-radius: 10px;
     width: 70%;
     min-width: 350px;
     margin: 0 auto;
@@ -37,12 +44,12 @@
       margin: 0 auto;
       border: 1px black solid;
       border-radius: 10px;
-      background-color: #f3f3f3;
+      background-color: slategray;
+      color: white;
       transform: all, .25s;
 
       &:hover{
         background-color: #333;
-        color: white;
         transform: all, .25s
       }
 
@@ -59,6 +66,7 @@
   .modalLogin{
     position: absolute;
     top: 0;
+    left: 0;
     background-color: rgba(51, 51, 51, 0.856);
     width: 100vw;
     height: 100vh;
