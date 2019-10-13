@@ -61,4 +61,9 @@ export class GamesComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+  viewPlayers = (e) => {
+    this.http.gameViewPlayers = e.target.value;
+    this.router.navigate(['/listplayers'])
+  }
 }

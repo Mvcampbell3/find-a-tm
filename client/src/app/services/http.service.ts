@@ -6,6 +6,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 })
 
 export class HttpService {
+
+  gameViewPlayers: string = '';
+
   constructor(
     private _http: HttpClient) { }
 
@@ -34,7 +37,7 @@ export class HttpService {
 
   updateUserOnline(token) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
-    return this._http.put('/api/user/updateonline', {date: Date.now()} , { headers })
+    return this._http.put('/api/user/updateonline', { date: Date.now() }, { headers })
   }
 
   getUserProfile(token) {
@@ -45,5 +48,11 @@ export class HttpService {
   getUserGamesList(token) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
     return this._http.get("/api/user/gameList", { headers })
+  }
+
+  getPlayersListGame(gameId) {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.get(`/api/game/listplayers/${gameId}`, { headers });
   }
 }

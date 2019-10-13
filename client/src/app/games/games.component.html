@@ -15,7 +15,7 @@
 
     <div class="buttonArea">
       <button *ngIf='gameIDs.indexOf(game._id) === -1' class="gameBtn">Add to Games</button>
-      <button class="gameBtn">View Players</button>
+      <button class="gameBtn" [value]='game._id' (click)='viewPlayers($event)'>View Players</button>
     </div>
   </div>
 </div>

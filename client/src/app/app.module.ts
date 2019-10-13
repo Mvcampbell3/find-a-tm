@@ -11,13 +11,15 @@ import { UserService } from './services/user.service';
 import { HttpService } from './services/http.service';
 import { GamesComponent } from './games/games.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ListplayersComponent } from './listplayers/listplayers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     GamesComponent,
-    ProfileComponent
+    ProfileComponent,
+    ListplayersComponent
   ],
   imports: [
     BrowserModule,
