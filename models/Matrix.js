@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
-
 const MatrixSchema = new Schema({
   userID: {
     type: Schema.Types.ObjectId,
@@ -17,6 +15,11 @@ const MatrixSchema = new Schema({
   },
 
   platform: {
+    type: String,
+    required: true
+  },
+
+  gamerTag: {
     type: String,
     required: true
   },
