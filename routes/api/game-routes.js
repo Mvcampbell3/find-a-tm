@@ -46,5 +46,15 @@ router.post('/newgame', checkAuth, (req, res) => {
 
 })
 
+router.get('/listplayers/:id', checkAuth, (req, res) => {
+  console.log(req.params.id)
+  db.Matrix.find({ gameID: req.params.id }).populate("gameID")
+    .then(matricies => {
+      console.log(matricies)
+      res.status(200).json(matricies)
+    })
+    .catch(err => res.status(400).json(err))
+})
+
 
 module.exports = router;
