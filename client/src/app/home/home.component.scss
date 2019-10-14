@@ -1,9 +1,11 @@
 .container{
-  height: calc(100vh - 69.8px);
+
+  height: calc(100vh - 56.8px);
   padding: 50px;
   background: url('https://images.unsplash.com/photo-1533381309471-b8e57002fc47?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1907&q=80');
   background-size: cover;
   background-repeat: no-repeat;
+
   .splash{
     background-color: rgba(255, 255, 255, 0.89);
     border-radius: 10px;
@@ -76,7 +78,7 @@
     .form{
       width: 350px;
       padding: 2em 1em;
-      background-color: #ddd; 
+      background-color: #ccc; 
       border-radius: 10px;
       .input-group{
         width: 100%;
@@ -84,12 +86,47 @@
         input[type=text], input[type=password]{
           width: 100%;
           padding: .5em;
-          margin-bottom: .5em;
+          margin: .5em 0;
+          border: none;
+          border-radius: 10px;
         }
+
+        
       }
     }
   }
   
+}
+
+.logButtonArea{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+
+  button{
+    display: block;
+    width: 48%;
+    padding: 6px 0;
+    border-radius: 10px;
+    background-color: slategray;
+    color: white;
+    border: none;
+
+    &:hover{
+      background-color: #333;
+      color: white;
+    }
+
+    &:active{
+      transform: scale(.90);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+
 }
 
 .slideDown{

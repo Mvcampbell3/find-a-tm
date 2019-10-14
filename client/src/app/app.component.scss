@@ -3,6 +3,7 @@ header{
   justify-content: space-between;
   align-items: center;
   background-color: slategray;
+  height: 56.8px;
 
   a.brand{
     padding: .5em;
@@ -22,7 +23,7 @@ header{
         a{
           text-decoration: none;
           display: block;
-          padding: 1.5em;
+          padding: 17.6px 1.5em;
           color: white;
           &:hover{
             background-color: rgb(43, 54, 65);
