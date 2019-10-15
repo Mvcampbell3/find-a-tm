@@ -17,11 +17,13 @@ router.get('/all', checkAuth, (req, res) => {
     .catch(err => res.status(500).json(err))
 })
 
-router.delete('/testdeleteall', (req, res) => {
-  db.Game.remove()
-    .then(result => res.status(200).json(result))
-    .catch(err => res.status(500).json(err))
-})
+// I do not want to delete the games
+
+// router.delete('/testdeleteall', (req, res) => {
+//   db.Game.remove()
+//     .then(result => res.status(200).json(result))
+//     .catch(err => res.status(500).json(err))
+// })
 
 router.post('/newgame', checkAuth, (req, res) => {
   const { title, developer, ps4, team_game } = req.body;

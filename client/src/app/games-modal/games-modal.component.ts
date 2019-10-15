@@ -24,8 +24,13 @@ export class GamesModalComponent implements OnInit {
     this.closeModal.emit(false);
   }
 
-  createMatrix() {
-
+  createMatrix(e) {
+    console.log(this.gameID);
+    console.log(this.selfRating);
+    this.http.createMatrix(this.gameID, this.selfRating).subscribe(
+      (data) =>  console.log(data),
+      (err) => console.log(err)
+    )
   }
 
   saveRating(e) {

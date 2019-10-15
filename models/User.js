@@ -34,6 +34,9 @@ const UserSchema = new Schema({
 
   platforms: [PlatformSchema],
 
+  gameIDs: [Schema.Types.ObjectId],
+  default: [],
+  ref: 'Game'
 })
 
 UserSchema.pre('save', function(next) {

@@ -20,7 +20,7 @@ router.delete('/testdeleteall', (req, res) => {
 })
 
 router.post('/newmatrix', checkAuth, (req, res) => {
-  const { userID, gameID, platform, selfRating } = req.body;
+  const { gameID, platform, selfRating } = req.body;
 
   const newMatrix = new db.Matrix({
     userID: req.userId,

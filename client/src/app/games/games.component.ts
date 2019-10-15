@@ -73,7 +73,6 @@ export class GamesComponent implements OnInit, OnDestroy {
   }
 
   viewMatrix(e, title, gameID) {
-    console.log(window.scrollY);
     this.modalTop = window.scrollY;
     this.gameTitle = title;
     this.showGamesModal = true;
