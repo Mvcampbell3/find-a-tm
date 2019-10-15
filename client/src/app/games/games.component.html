@@ -14,10 +14,13 @@
     </div>
 
     <div class="buttonArea">
-      <button *ngIf='gameIDs.indexOf(game._id) === -1' class="gameBtn">Add to Games</button>
+      <button *ngIf='gameIDs.indexOf(game._id) === -1' class="gameBtn" (click)='viewMatrix($event, game.title)'>Add to
+        Games</button>
       <button class="gameBtn" [value]='game._id' (click)='viewPlayers($event)'>View Players</button>
     </div>
   </div>
 
-  
+  <app-games-modal *ngIf='showGamesModal' (closeModal)='closeMatrix($event)' [gameTitle]='gameTitle'
+    [modalTop]='modalTop' [gameID]='gameSendID'>
+  </app-games-modal>
 </div>

@@ -1,0 +1,14 @@
+<div class="games-modal" [ngStyle]='{"top":modalTop+"px"}'>
+  <div class="modal-form">
+    <h3 class="text-center">{{gameTitle}}</h3>
+    <h5 class="text-center">Skill Level</h5>
+    <div class="skillButtons">
+      <button class="skillBtn" id="left-end" value='1' (click)='saveRating($event)'>1</button>
+      <button class="skillBtn" value='2' (click)='saveRating($event)'>2</button>
+      <button class="skillBtn" value='3' (click)='saveRating($event)'>3</button>
+      <button class="skillBtn" value='4' (click)='saveRating($event)'>4</button>
+      <button class="skillBtn" id="right-end" value='5' (click)='saveRating($event)'>5</button>
+    </div>
+    <button (click)='closeModalFunc()'>Close</button>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+.games-modal{
+  position: absolute;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(112, 128, 144, 0.76);
+  overflow: hidden;
+  z-index: 12;
+  display: grid;
+  place-items: center;
+}
+
+.modal-form{
+  width: 300px;
+  background-color: white;
+  padding: 10px;
+}
+
+.skillButtons{
+  width: fit-content;
+  margin: .25em auto;
+}
+
+.skillBtn{
+  padding: 10px 20px;
+  border: none;
+
+  &:hover{
+    background-color: #333;
+    color: white;
+  }
+
+  &:active{
+    transform: scale(.90);
+  }
+
+  &:focus{
+    outline: none;
+  }
+}
+
+.active{
+  background-color: navy;
+  color: white;
+
+  &:hover{
+  background-color: darken(navy, 5%);
+  color: white;
+  }
+}
+
+#left-end{
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+#right-end{
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}

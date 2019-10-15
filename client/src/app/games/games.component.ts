@@ -14,6 +14,11 @@ export class GamesComponent implements OnInit, OnDestroy {
   gamesSubscription: any;
   profileSubscription: any;
 
+  showGamesModal: Boolean = false;
+  modalTop: Number = 0;
+  gameTitle: string;
+  gameSendID: string;
+
   games: Game[] = [];
   gameIDs: String[] = [];
 
@@ -65,5 +70,17 @@ export class GamesComponent implements OnInit, OnDestroy {
   viewPlayers = (e) => {
     this.http.gameViewPlayers = e.target.value;
     this.router.navigate(['/listplayers'])
+  }
+
+  viewMatrix(e, title, gameID) {
+    console.log(window.scrollY);
+    this.modalTop = window.scrollY;
+    this.gameTitle = title;
+    this.showGamesModal = true;
+    this.gameSendID = gameID
+  }
+
+  closeMatrix(value) {
+    this.showGamesModal = value;
   }
 }

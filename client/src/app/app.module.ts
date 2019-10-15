@@ -12,6 +12,7 @@ import { HttpService } from './services/http.service';
 import { GamesComponent } from './games/games.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ListplayersComponent } from './listplayers/listplayers.component';
+import { GamesModalComponent } from './games-modal/games-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ListplayersComponent } from './listplayers/listplayers.component';
     HomeComponent,
     GamesComponent,
     ProfileComponent,
-    ListplayersComponent
+    ListplayersComponent,
+    GamesModalComponent
   ],
   imports: [
     BrowserModule,
