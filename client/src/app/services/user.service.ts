@@ -46,6 +46,8 @@ export class UserService {
     }
   }
 
+  // This will run everytime that the user reloads the page, spec. navbar app.component
+  // Do we want to update the time that much?
   updateUserOnline() {
     const token = JSON.parse(localStorage.getItem('token-find-tm'));
     this.http.updateUserOnline(token).subscribe(

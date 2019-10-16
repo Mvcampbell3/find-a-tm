@@ -50,7 +50,7 @@ router.post('/newgame', checkAuth, (req, res) => {
 
 router.get('/listplayers/:id', checkAuth, (req, res) => {
   console.log(req.params.id)
-  db.Matrix.find({ gameID: req.params.id }).populate("gameID")
+  db.Matrix.find({ gameID: req.params.id }).populate("gameID").populate("userID", "lastOnline")
     .then(matricies => {
       console.log(matricies)
       res.status(200).json(matricies)

@@ -5,7 +5,6 @@ const moment = require('moment');
 
 const PlatformSchema = new Schema({
   system: String,
-  own: Boolean,
   gamerTag: String
 })
 
@@ -28,15 +27,16 @@ const UserSchema = new Schema({
   },
 
   lastOnline: {
-    type: String, 
+    type: String,
     default: moment().format('x')
   },
 
   platforms: [PlatformSchema],
 
-  gameIDs: [Schema.Types.ObjectId],
-  default: [],
-  ref: 'Game'
+  gameIDs: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Game'
+  }
 })
 
 UserSchema.pre('save', function(next) {

@@ -20,18 +20,43 @@ router.delete('/testdeleteall', (req, res) => {
 })
 
 router.post('/newmatrix', checkAuth, (req, res) => {
-  const { gameID, platform, selfRating } = req.body;
 
-  const newMatrix = new db.Matrix({
-    userID: req.userId,
-    gameID,
-    platform,
-    selfRating
-  })
 
-  newMatrix.save()
-    .then(result => res.status(201).json(result))
-    .catch(err => res.status(422).json(err))
+
+  db.User.findById(req.userId)
+    .then(user => {
+
+      const { gameID, platform, selfRating } = req.body;
+
+
+      if (user.gameIDs.filter(each => each === gameID).length === 0) {
+
+
+        const platIndex = user.platforms.map(plat => plat.system).indexOf(platform);
+
+        if (platIndex < 0) {
+          return res.status(422).json({ msg: 'User does not have that platform registered' })
+        }
+
+        const newMatrix = new db.Matrix({
+          userID: req.userId,
+          gameID,
+          platform,
+          selfRating,
+          gamerTag: user.platforms[platIndex].gamerTag
+        })
+
+        newMatrix.save()
+          .then(result => res.status(201).json(result))
+          .catch(err => res.status(422).json(err))
+
+      } else {
+        res.status(422).json({ msg: 'User already has game matrix' })
+      }
+    })
+
+
+
 })
 
 module.exports = router;

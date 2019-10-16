@@ -1,1 +1,5 @@
-<p>listplayers works!</p>
+<div class="playerHolder" *ngIf='playersList.length > 0'>
+  <div class="player" *ngFor='let player of playersList, let i = index'>
+    {{player.gamerTag}} Self Rating: {{player.selfRating}} Last Online: {{player.latest}}
+  </div>
+</div>
