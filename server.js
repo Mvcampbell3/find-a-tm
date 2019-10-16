@@ -16,7 +16,7 @@ require('dotenv').config()
 
 app.use(routes)
 
-mongoose.connect(process.env.MONGOD_URI || "mongodb://localhost/teammatefinder",
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefinder",
   { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('mongodb connected');
