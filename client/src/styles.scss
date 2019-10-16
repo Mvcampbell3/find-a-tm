@@ -11,3 +11,16 @@
 .text-center{
   text-align: center;
 }
+
+.upper-case{
+  text-transform: capitalize;
+}
+
+.player{
+  display: grid;
+  width: 80%;
+  padding: 8px 20px;
+  background-color: lightcyan;
+  margin: 0 auto;
+  grid-template-columns: 1fr 100px 200px;
+}
