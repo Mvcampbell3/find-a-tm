@@ -9,6 +9,7 @@ import { UserService } from './services/user.service';
 export class AppComponent implements OnInit, OnDestroy {
   userCheck = this.userService.user.subscribe((data: boolean) => this.user = data);
   user: boolean;
+  displayMobile: boolean = false;
   constructor(public userService: UserService) {
 
   }

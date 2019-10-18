@@ -2,12 +2,20 @@
   <a routerLink="/" class="brand">Teammate Finder</a>
 
   <nav>
-    <ul>
+    <ul class="desktop">
       <li *ngIf="user"><a routerLink="/games">Games</a></li>
       <li *ngIf="user"><a routerLink="/profile">Profile</a></li>
       <li *ngIf="user"><a (click)="logoutUser()">Logout</a></li>
-
     </ul>
+
+    <div class="menu">
+      <div class="line" (click)='mobileNav()'></div>
+      <ul class="mobile slideDown">
+        <li *ngIf="user"><a routerLink="/games">Games</a></li>
+        <li *ngIf="user"><a routerLink="/profile">Profile</a></li>
+        <li *ngIf="user"><a (click)="logoutUser()">Logout</a></li>
+      </ul>
+    </div>
   </nav>
 </header>
 
