@@ -10,6 +10,14 @@ export class AppComponent implements OnInit, OnDestroy {
   userCheck = this.userService.user.subscribe((data: boolean) => this.user = data);
   user: boolean;
   displayMobile: boolean = false;
+  loaded: boolean = false;
+
+  classObject: object = {
+    'mobile': true,
+    'slideDown': this.displayMobile,
+    'riseUp': !this.displayMobile
+  }
+
   constructor(public userService: UserService) {
 
   }
@@ -23,6 +31,28 @@ export class AppComponent implements OnInit, OnDestroy {
 
   logoutUser() {
     this.userService.logoutUser();
+    this.displayMobile = false;
+  }
+
+  mobileNav() {
+    if (!this.loaded) {
+      this.loaded = true;
+    }
+    this.displayMobile = !this.displayMobile;
+  }
+
+  hideMobile() {
+    this.displayMobile = false;
+  }
+
+  classFunction() {
+    let classes = {
+      'mobile': true,
+      'slideDown': this.displayMobile,
+      'slideUp': !this.displayMobile && this.loaded
+    }
+
+    return classes;
   }
 
 }
