@@ -35,10 +35,17 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   mobileNav() {
-    if (!this.loaded) {
+    if (!this.displayMobile) {
+      this.loaded = true;
+      this.displayMobile = true;
+    } else {
+      this.displayMobile = false;
       this.loaded = true;
     }
-    this.displayMobile = !this.displayMobile;
+
+    setTimeout(() => {
+      this.loaded = false;
+    }, 300)
   }
 
   hideMobile() {
