@@ -15,6 +15,8 @@ export class ProfileComponent implements OnInit {
   newGame: string = '';
   newRating: number = 0;
 
+  deleteActive: boolean = false;
+
 
   constructor(public userService: UserService, private http: HttpService) { }
 
@@ -31,6 +33,9 @@ export class ProfileComponent implements OnInit {
     )
   }
 
+  toggleDelete() {
+    this.deleteActive = !this.deleteActive;
+  }
 
 
 

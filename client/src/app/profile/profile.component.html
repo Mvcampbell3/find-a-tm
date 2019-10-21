@@ -1,26 +1,33 @@
 <div class="profileHolder" *ngIf='userInfo'>
   <div class="leftSide">
     <div class="playerInfo">
-      <h3>{{ userInfo.username }}</h3>
 
-      <div class="inputGroup">
-        platforms:
+      <div class="playerInfo-top">
+        <h3>{{ userInfo.username }}</h3>
+        <div class="editButton">!</div>
+      </div>
+
+      <div class="platforms">
+        Platforms:
         <div *ngFor='let platform of userInfo.platforms' class="platformGroup">
-          <p>{{platform.system}}: {{platform.gamerTag}}</p>
+          <div>{{platform.system}}: {{platform.gamerTag}}</div>
         </div>
 
-
       </div>
+    </div>
+
+    <div class="deleteHolder">
+      <button class="delBtn" (click)='toggleDelete()'>{{deleteActive ? 'Cancel': 'Delete Game'}}</button>
     </div>
   </div>
   <div class="RightSide">
     <div class="matrixGame" *ngFor='let matrix of matrixInfo'>
-        <span class="game-title">{{matrix.gameID.title}}</span>
-        <span class="game-platform">system: {{matrix.platform}}</span>
-        <span class="game-gamerTag">tag: {{matrix.gamerTag}}</span> 
-        <span class="game-rating">skill: {{matrix.selfRating}}</span>
+      <div class="game-title game-info">{{matrix.gameID.title}}</div>
+      <div class="game-platform game-info">system: {{matrix.platform}}</div>
+      <div class="game-gamerTag game-info">{{matrix.gamerTag}}</div>
+      <div class="game-rating game-info">skill: {{matrix.selfRating}}</div>
     </div>
     <button class="addMatrix">Add Game</button>
   </div>
-  
+
 </div>
