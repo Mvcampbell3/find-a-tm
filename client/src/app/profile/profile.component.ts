@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     const token = JSON.parse(localStorage.getItem('token-find-tm'))
     this.http.getUserProfile(token).subscribe(
-      (data:any) => {
+      (data: any) => {
         console.log(data)
         console.log(data.userInfo)
         this.userInfo = data.userInfo;
@@ -37,7 +37,14 @@ export class ProfileComponent implements OnInit {
     this.deleteActive = !this.deleteActive;
   }
 
-
+  handleClick(id) {
+    console.log(id);
+    if (this.deleteActive) {
+      console.log('This will be deleted')
+    } else {
+      console.log('This will be sent to game list players page')
+    }
+  }
 
 
 }

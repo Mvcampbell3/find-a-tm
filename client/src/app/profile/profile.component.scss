@@ -86,6 +86,11 @@
   align-items: center;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.192);
 
+  &:hover{
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.192);
+    transform: scale(.98)
+  }
+
   @media screen and (max-width: 1000px) {
     grid-template-columns: 1fr 1fr;
   }
@@ -95,7 +100,6 @@
     font-size: 18px;
     text-transform: capitalize;
     text-align: center;
-    background-color: lightsteelblue;
     padding: 10px;
   }
 
@@ -108,19 +112,40 @@
 
   .game-platform{
     font-size: 12px;
-    background-color: lighten(lightsteelblue, 10%);
   }
 
   .game-gamerTag{
-    background-color: lightsteelblue;
     font-size: 14px;
     font-style: italic;
   }
 
   .game-rating {
     color: #333;
+  }
+
+  .keep{
+    background-color: lightsteelblue;
+  }
+
+  .keep-light{
     background-color: lighten(lightsteelblue, 10%);
   }
+
+  .delete-bg{
+    background-color: darkred;
+    color: white;
+  }
+
+  .delete-bg-light{
+    background-color: lighten(darkred, 10%);
+    color: white;
+  }
+
+  
+}
+
+.deleteClass{
+  border: 1px black dashed;
 }
 
 .addMatrix{

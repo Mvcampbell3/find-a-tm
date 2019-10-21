@@ -21,11 +21,16 @@
     </div>
   </div>
   <div class="RightSide">
-    <div class="matrixGame" *ngFor='let matrix of matrixInfo'>
-      <div class="game-title game-info">{{matrix.gameID.title}}</div>
-      <div class="game-platform game-info">system: {{matrix.platform}}</div>
-      <div class="game-gamerTag game-info">{{matrix.gamerTag}}</div>
-      <div class="game-rating game-info">skill: {{matrix.selfRating}}</div>
+    <div (click)='handleClick(matrix.gameID._id)' [ngClass]="deleteActive ? 'matrixGame deleteClass':'matrixGame'"
+      *ngFor='let matrix of matrixInfo'>
+      <div [ngClass]="deleteActive ? 'game-title game-info delete-bg': 'game-title game-info keep'">
+        {{matrix.gameID.title}}</div>
+      <div [ngClass]="deleteActive ? 'game-platform game-info delete-bg-light': 'game-platform game-info keep-light'">
+        system: {{matrix.platform}}</div>
+      <div [ngClass]="deleteActive ? 'game-gamerTag game-info delete-bg': 'game-gamerTag game-info keep'">
+        {{matrix.gamerTag}}</div>
+      <div [ngClass]="deleteActive ? 'game-rating game-info delete-bg-light': 'game-rating game-info keep-light'">skill:
+        {{matrix.selfRating}}</div>
     </div>
     <button class="addMatrix">Add Game</button>
   </div>
