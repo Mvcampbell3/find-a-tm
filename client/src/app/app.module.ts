@@ -13,6 +13,7 @@ import { GamesComponent } from './games/games.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ListplayersComponent } from './listplayers/listplayers.component';
 import { GamesModalComponent } from './games-modal/games-modal.component';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { GamesModalComponent } from './games-modal/games-modal.component';
     GamesComponent,
     ProfileComponent,
     ListplayersComponent,
-    GamesModalComponent
+    GamesModalComponent,
+    DeleteModalComponent
   ],
   imports: [
     BrowserModule,

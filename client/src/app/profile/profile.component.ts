@@ -15,6 +15,11 @@ export class ProfileComponent implements OnInit {
   newGame: string = '';
   newRating: number = 0;
 
+  modalTop: number = 0;
+  gameTitleSend: string;
+  gameIDSend: string;
+  showDelModal: boolean = false;
+
   deleteActive: boolean = false;
 
 
@@ -37,13 +42,21 @@ export class ProfileComponent implements OnInit {
     this.deleteActive = !this.deleteActive;
   }
 
-  handleClick(id) {
-    console.log(id);
+  handleClick(id, title) {
+    console.log(id, title);
     if (this.deleteActive) {
       console.log('This will be deleted')
+      this.gameIDSend = id;
+      this.gameTitleSend = title;
+      this.modalTop = window.scrollY;
+      this.showDelModal = true;
     } else {
       console.log('This will be sent to game list players page')
     }
+  }
+
+  closeModalFunc(value) {
+    this.showDelModal = value
   }
 
 

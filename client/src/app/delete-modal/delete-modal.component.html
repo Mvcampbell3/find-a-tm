@@ -1,0 +1,10 @@
+<div class='deleteModal' [ngStyle]='{"top": modalTop + "px"}'>
+  <div class="deleteConfirm">
+    <h3>Are you sure you want to delete {{gameTitle}}?</h3>
+    <div class="delBtnsArea">
+      <button>Yes</button>
+      <button (click)='closeModalFunc()'>Cancel</button>
+    </div>
+
+  </div>
+</div>
