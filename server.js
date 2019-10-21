@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, "client/dist/client")))
 app.use(routes)
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefinder",
-  { useNewUrlParser: true, useUnifiedTopology: true })
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then(() => {
     console.log('mongodb connected');
     app.listen(PORT, () => {

@@ -59,4 +59,29 @@ router.post('/newmatrix', checkAuth, (req, res) => {
 
 })
 
+router.delete('/delete/:id', checkAuth, (req, res) => {
+  const user = req.userId;
+  console.log(typeof user)
+  db.Matrix.findById(req.params.id)
+    .then(matrix => {
+      console.log(typeof matrix.userID.toString());
+      console.log(user)
+      if (matrix.userID.toString() === req.userId) {
+        // res.json({ msg: 'will delete' })
+        matrix.remove()
+          .then(result => {
+            res.status(200).json({ ok: true, result })
+          })
+          .catch(err => {
+            res.status(422).json(err)
+          })
+      } else {
+        res.json({ msg: 'not right user' })
+      }
+    })
+    .catch(err => {
+      res.status(422).json(err)
+    })
+})
+
 module.exports = router;

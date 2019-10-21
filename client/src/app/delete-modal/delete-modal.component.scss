@@ -14,11 +14,12 @@
 
   .deleteConfirm{
     width: 50%;
-    min-width: 350px;
+    min-width: 325px;
     background-color: white;
     min-height: 300px;
     display: grid;
     place-items: center;
+    border-radius: 10px;
 
     h3{
       width: 90%;

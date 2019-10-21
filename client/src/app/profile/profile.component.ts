@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { HttpService } from '../services/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -17,13 +18,13 @@ export class ProfileComponent implements OnInit {
 
   modalTop: number = 0;
   gameTitleSend: string;
-  gameIDSend: string;
+  modalIDSend: string;
   showDelModal: boolean = false;
 
   deleteActive: boolean = false;
 
 
-  constructor(public userService: UserService, private http: HttpService) { }
+  constructor(public userService: UserService, private http: HttpService, private router: Router) { }
 
   ngOnInit() {
     const token = JSON.parse(localStorage.getItem('token-find-tm'))
@@ -46,12 +47,14 @@ export class ProfileComponent implements OnInit {
     console.log(id, title);
     if (this.deleteActive) {
       console.log('This will be deleted')
-      this.gameIDSend = id;
+      this.modalIDSend = id;
       this.gameTitleSend = title;
       this.modalTop = window.scrollY;
       this.showDelModal = true;
     } else {
       console.log('This will be sent to game list players page')
+      this.http.gameViewPlayers = id;
+      this.router.navigate(['/listplayers'])
     }
   }
 
