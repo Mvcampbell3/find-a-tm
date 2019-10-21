@@ -21,7 +21,7 @@
     </div>
   </div>
   <div class="RightSide">
-    <div (click)='handleClick(matrix._id, matrix.gameID.title)' [ngClass]="deleteActive ? 'matrixGame deleteClass':'matrixGame'"
+    <div (click)='handleClick(matrix._id, matrix.gameID.title, matrix.gameID._id)' [ngClass]="deleteActive ? 'matrixGame deleteClass':'matrixGame'"
       *ngFor='let matrix of matrixInfo'>
       <div [ngClass]="deleteActive ? 'game-title game-info delete-bg': 'game-title game-info keep'">
         {{matrix.gameID.title}}</div>

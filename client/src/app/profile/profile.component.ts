@@ -27,6 +27,34 @@ export class ProfileComponent implements OnInit {
   constructor(public userService: UserService, private http: HttpService, private router: Router) { }
 
   ngOnInit() {
+    this.getGamesList()
+  }
+
+  toggleDelete() {
+    this.deleteActive = !this.deleteActive;
+  }
+
+  handleClick(matrixID, title, gameID) {
+    console.log(matrixID, title);
+    if (this.deleteActive) {
+      console.log('This will be deleted')
+      this.modalIDSend = matrixID;
+      this.gameTitleSend = title;
+      this.modalTop = window.scrollY;
+      this.showDelModal = true;
+    } else {
+      console.log('This will be sent to game list players page')
+      this.http.gameViewPlayers = gameID;
+      this.router.navigate(['/listplayers'])
+    }
+  }
+
+  closeModalFunc(value) {
+    this.showDelModal = value;
+    this.getGamesList();
+  }
+
+  getGamesList() {
     const token = JSON.parse(localStorage.getItem('token-find-tm'))
     this.http.getUserProfile(token).subscribe(
       (data: any) => {
@@ -37,29 +65,6 @@ export class ProfileComponent implements OnInit {
       },
       err => console.log(err)
     )
-  }
-
-  toggleDelete() {
-    this.deleteActive = !this.deleteActive;
-  }
-
-  handleClick(id, title) {
-    console.log(id, title);
-    if (this.deleteActive) {
-      console.log('This will be deleted')
-      this.modalIDSend = id;
-      this.gameTitleSend = title;
-      this.modalTop = window.scrollY;
-      this.showDelModal = true;
-    } else {
-      console.log('This will be sent to game list players page')
-      this.http.gameViewPlayers = id;
-      this.router.navigate(['/listplayers'])
-    }
-  }
-
-  closeModalFunc(value) {
-    this.showDelModal = value
   }
 
 

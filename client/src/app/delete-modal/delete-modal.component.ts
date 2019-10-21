@@ -27,6 +27,7 @@ export class DeleteModalComponent implements OnInit {
     this.http.deleteMatrix(this.modalID).subscribe(
       (data: any) => {
         console.log(data)
+        this.closeModal.emit(false);
       },
       (err: any) => {
         console.log(err)
