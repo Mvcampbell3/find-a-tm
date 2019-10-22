@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     public userService: UserService,
     private router:Router) { }
 
-  user = this.userService.user;
+  user = this.userService.user.subscribe();
 
   ngOnInit() {
   }
@@ -34,7 +34,12 @@ export class HomeComponent implements OnInit {
   }
 
   changeModal() {
-    this.showModal = !this.showModal;
+    console.log(this.userService.user.value)
+    if (this.userService.user.value) {
+      this.router.navigate(['/games'])
+    } else {
+      this.showModal = !this.showModal;
+    }
   }
 
   hideModal(event) {

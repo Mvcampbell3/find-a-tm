@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { HttpService } from "./http.service";
 import { Router } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
-  user = new Subject();
+  user = new BehaviorSubject<boolean>(false);
   token: string = "this is not loaded";
 
   constructor(private http: HttpService, private router: Router) {

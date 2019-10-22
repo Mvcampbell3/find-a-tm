@@ -81,5 +81,7 @@ export class GamesComponent implements OnInit, OnDestroy {
 
   closeMatrix(value) {
     this.showGamesModal = value;
+    this.getGamesList();
+    this.getUserProfile();
   }
 }

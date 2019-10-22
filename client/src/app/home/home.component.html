@@ -11,7 +11,8 @@
 
   <div class="modalLogin" *ngIf='showModal' (click)='hideModal($event)'>
     <div class="form">
-      <h3 class='text-center'>Login</h3>
+      <h3 class='text-center'>{{signup ? 'Sign Up': "Login"}}</h3>
+      <div class="line-across"></div>
       <div class="input-group">
         <label for="email">Email</label><br>
         <input type="text" name="email" id="emailInput" [(ngModel)]="email">
@@ -26,6 +27,8 @@
         <label for="password">Password</label><br>
         <input type="password" name="password" id="passwordInput" [(ngModel)]="password">
       </div>
+
+      <!-- <div class="line-across"></div> -->
 
       <div class="input-group logButtonArea">
         <button (click)="signup ? postSignupUser() : postLoginUser()">Send</button>
