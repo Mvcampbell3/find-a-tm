@@ -12,6 +12,93 @@
 .leftSide{
   background-color: #dfdfdf;
 
+  .playerInfo{
+    width: 90%;
+    margin: 1em auto;
+    padding: 20px 5px;
+    background-color: white;
+    border-radius: 5px;
+
+    .add-platforms {
+      margin: .5em 0;
+      height: 0px;
+      overflow: hidden;
+
+      .platHolder{
+        margin: .5em 0;
+        display: flex;
+        justify-content: space-between;
+
+        .plat{
+          width: 60px;
+          height: 60px;
+          border-radius: 10px;
+          user-select: none;
+          cursor: pointer;
+          display: grid;
+          place-items: center;
+          transition: all, .25s;
+        }
+
+        .open {
+          background-color: rgb(218, 218, 218);
+          box-shadow: 0px 5px 10px rgba(51, 51, 51, 0.267);
+          color: black;
+        }
+
+        .selected{
+          background-color: steelblue;
+          box-shadow: 0px 0px 0px rgba(51, 51, 51, 0.267);
+          color: white;
+        }
+      }
+    }
+
+    .drop{
+      animation-name: dropPlat;
+      animation-duration: .3s;
+      animation-fill-mode: forwards;
+    }
+
+    .lift{
+      animation-name: liftPlat;
+      animation-duration: .3s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes dropPlat {
+      0% {height: 0px}
+      100% {height: 120.4px}
+    }
+
+    @keyframes liftPlat {
+      0% {height: 120.4px}
+      100% {height: 0px}
+    }
+
+    .platforms{
+      margin-top: 1em;
+    }
+  }
+
+  .playerInfo-top{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    .editButton{
+      padding: 3px 9px;
+      background-color: slategray;
+      border-radius: 50%;
+      border: 1px lightgreen solid;
+      color: lightgreen;
+      cursor: pointer;
+      font-weight: bolder;
+      user-select: none;
+    }
+  }
+
   .deleteHolder{
     width: 90%;
     max-width: 270px;
@@ -41,36 +128,6 @@
         transform: scale(.95);
         transition: transform .25s;
       }
-    }
-
-  }
-
-  .playerInfo{
-    width: 90%;
-    margin: 1em auto;
-    padding: 20px 5px;
-    background-color: white;
-    border-radius: 5px;
-
-    .platforms{
-      margin-top: 1em;
-    }
-  }
-
-  .playerInfo-top{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-
-    .editButton{
-      padding: 3px 12px;
-      background-color: slategray;
-      border-radius: 50%;
-      border: 1px lightgreen solid;
-      color: lightgreen;
-      cursor: pointer;
-      font-weight: bolder;
     }
   }
 }

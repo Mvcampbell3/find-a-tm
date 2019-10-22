@@ -4,7 +4,21 @@
 
       <div class="playerInfo-top">
         <h3>{{ userInfo.username }}</h3>
-        <div class="editButton">!</div>
+        <div class="editButton" (click)='editClick()'>+</div>
+      </div>
+
+      <div [ngClass]="setAddClass()">
+        <h4>Add Platform</h4>
+        <div class="platHolder">
+          <div [ngClass]='platClasses("ps4")' (click)='setPlat("ps4")' value='ps4'>ps4</div>
+          <div [ngClass]='platClasses("xbox1")' (click)='setPlat("xbox1")' value='xbox1'>xbox1</div>
+          <div [ngClass]='platClasses("switch")' (click)='setPlat("switch")' value='switch'>switch</div>
+        </div>
+        <div class="input-group">
+          <input type="text" placeholder='gamertag...'>
+          <button class="addPlatBtn">Add</button>
+        </div>
+
       </div>
 
       <div class="platforms">
@@ -21,8 +35,8 @@
     </div>
   </div>
   <div class="RightSide">
-    <div (click)='handleClick(matrix._id, matrix.gameID.title, matrix.gameID._id)' [ngClass]="deleteActive ? 'matrixGame deleteClass':'matrixGame'"
-      *ngFor='let matrix of matrixInfo'>
+    <div (click)='handleClick(matrix._id, matrix.gameID.title, matrix.gameID._id)'
+      [ngClass]="deleteActive ? 'matrixGame deleteClass':'matrixGame'" *ngFor='let matrix of matrixInfo'>
       <div [ngClass]="deleteActive ? 'game-title game-info delete-bg': 'game-title game-info keep'">
         {{matrix.gameID.title}}</div>
       <div [ngClass]="deleteActive ? 'game-platform game-info delete-bg-light': 'game-platform game-info keep-light'">
@@ -35,5 +49,6 @@
     <button class="addMatrix">Add Game</button>
   </div>
 
-  <app-delete-modal (closeModal)='closeModalFunc($event)' *ngIf='showDelModal' [modalTop]='modalTop' [modalID]='modalIDSend' [gameTitle]='gameTitleSend'></app-delete-modal>
+  <app-delete-modal (closeModal)='closeModalFunc($event)' *ngIf='showDelModal' [modalTop]='modalTop'
+    [modalID]='modalIDSend' [gameTitle]='gameTitleSend'></app-delete-modal>
 </div>

@@ -20,8 +20,13 @@ export class ProfileComponent implements OnInit {
   gameTitleSend: string;
   modalIDSend: string;
   showDelModal: boolean = false;
+  showAddPlat: boolean = false;
+  addPlatClicked: boolean = false;
 
   deleteActive: boolean = false;
+
+  addPlatformPlat: string;
+  addPlatformTag: string;
 
 
   constructor(public userService: UserService, private http: HttpService, private router: Router) { }
@@ -67,5 +72,37 @@ export class ProfileComponent implements OnInit {
     )
   }
 
+  platClasses(check) {
+    const classes = {
+      'plat': true,
+      'open': check !== this.addPlatformPlat,
+      'selected': check === this.addPlatformPlat
+    }
+
+    return classes
+  }
+
+  setPlat(value) {
+    this.addPlatformPlat = value;
+  }
+
+  setAddClass() {
+    const classes = {
+      'add-platforms': true,
+      'drop': this.showAddPlat,
+      'lift': !this.showAddPlat && this.addPlatClicked
+    }
+    return classes;
+  }
+
+  editClick() {
+    if (!this.showAddPlat) {
+      this.showAddPlat = true;
+      this.addPlatClicked = true;
+    } else {
+      this.showAddPlat = false;
+      this.addPlatClicked = true;
+    }
+  }
 
 }
