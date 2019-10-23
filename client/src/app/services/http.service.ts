@@ -56,10 +56,10 @@ export class HttpService {
     return this._http.get(`/api/game/listplayers/${gameId}`, { headers });
   }
 
-  createMatrix(gameID, selfRating) {
+  createMatrix(gameID, selfRating, platform, gamerTag) {
     const token = JSON.parse(localStorage.getItem('token-find-tm'));
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this._http.post('/api/matrix/newmatrix', { gameID, selfRating, platform: 'ps4' }, { headers })
+    return this._http.post('/api/matrix/newmatrix', { gameID, selfRating, platform, gamerTag }, { headers })
   }
 
   deleteMatrix(matrixID) {

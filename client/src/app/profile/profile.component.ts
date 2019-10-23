@@ -105,4 +105,8 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  sendToGamesPage() {
+    this.router.navigate(['/games'])
+  }
+
 }

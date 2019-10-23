@@ -46,7 +46,7 @@
       <div [ngClass]="deleteActive ? 'game-rating game-info delete-bg-light': 'game-rating game-info keep-light'">skill:
         {{matrix.selfRating}}</div>
     </div>
-    <button class="addMatrix">Add Game</button>
+    <button class="addMatrix" (click)='sendToGamesPage()'>Add Game</button>
   </div>
 
   <app-delete-modal (closeModal)='closeModalFunc($event)' *ngIf='showDelModal' [modalTop]='modalTop'

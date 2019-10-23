@@ -9,6 +9,13 @@
       <button class="skillBtn" value='4' (click)='saveRating($event)'>4</button>
       <button class="skillBtn" id="right-end" value='5' (click)='saveRating($event)'>5</button>
     </div>
+    <div class="platforms" *ngIf='platformArray.length > 0'>
+      <h5>Select Platform</h5>
+      <div *ngFor='let platform of platformArray' [ngClass]='setPlatformClass(platform.system, platform.gamerTag)' (click)='setPlatform(platform.system, platform.gamerTag)'
+        [attr.data-system]='platform.system' [attr.data-gamerTag]='platform.gamerTag'>
+        <span class='system'>{{platform.system}}</span><span class='gamerTag'>{{platform.gamerTag}}</span>
+      </div>
+    </div>
     <div class="buttonArea">
       <button (click)='closeModalFunc()'>Close</button>
       <button (click)='createMatrix()'>Add Game</button>

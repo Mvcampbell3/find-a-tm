@@ -26,7 +26,7 @@ router.post('/newmatrix', checkAuth, (req, res) => {
   db.User.findById(req.userId)
     .then(user => {
 
-      const { gameID, platform, selfRating } = req.body;
+      const { gameID, platform, selfRating, gamerTag } = req.body;
 
 
       if (user.gameIDs.filter(each => each === gameID).length === 0) {
@@ -43,7 +43,7 @@ router.post('/newmatrix', checkAuth, (req, res) => {
           gameID,
           platform,
           selfRating,
-          gamerTag: user.platforms[platIndex].gamerTag
+          gamerTag
         })
 
         newMatrix.save()

@@ -21,6 +21,7 @@ export class GamesComponent implements OnInit, OnDestroy {
 
   games: Game[] = [];
   gameIDs: String[] = [];
+  platformArray: string[] = [];
 
   constructor(
     private http: HttpService,
@@ -57,9 +58,12 @@ export class GamesComponent implements OnInit, OnDestroy {
       (result: any) => {
         console.log(result);
         const matrixes = result.matrixInfo;
+        const userInfo = result.userInfo;
         this.gameIDs = [];
         matrixes.forEach((matrix) => this.gameIDs.push(matrix.gameID))
         console.log(this.gameIDs)
+        this.platformArray = [];
+        userInfo.platforms.forEach(plat => this.platformArray.push(plat))
       },
       err => {
         console.log(err)
