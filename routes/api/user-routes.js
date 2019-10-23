@@ -152,4 +152,56 @@ router.put('/updateonline', checkAuth, (req, res) => {
     })
 })
 
+router.put('/addplatform', checkAuth, (req, res) => {
+  console.log(req.body.system, req.body.gamerTag);
+  db.User.findByIdAndUpdate(req.userId, { $push: { platforms: { system: req.body.system, gamerTag: req.body.gamerTag } } })
+    .then(result => {
+      res.status(200).json(result)
+    })
+    .catch(err => {
+      res.status(422).json(err)
+    })
+})
+
+router.put('/deleteplatform', checkAuth, (req, res) => {
+  const { system, gamerTag } = req.body;
+
+  db.Matrix.find({ gamerTag })
+    .then(matrices => {
+      if (matrices.length > 0) {
+        matrices.forEach(matrix => matrix.remove()
+          .then(result => {
+            console.log(result);
+            console.log('this ran')
+            db.User.findByIdAndUpdate(req.userId, { $pull: { platforms: { system, gamerTag } } })
+              .then(end => {
+                console.log(end);
+                res.status(200).json(end);
+              })
+              .catch(err => {
+                console.log(err)
+                res.status(422).json(err);
+              })
+          })
+          .catch(err => {
+            res.status(422).json(err)
+          })
+        )
+      } else {
+        db.User.findByIdAndUpdate(req.userId, { $pull: { platforms: { system, gamerTag } } })
+          .then(end => {
+            console.log(end);
+            res.status(200).json(end);
+          })
+          .catch(err => {
+            console.log(err)
+            res.status(422).json(err);
+          })
+      }
+    })
+    .catch(err => {
+      res.json(err)
+    })
+})
+
 module.exports = router;

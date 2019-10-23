@@ -67,4 +67,16 @@ export class HttpService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this._http.delete(`/api/matrix/delete/${matrixID}`, { headers })
   }
+
+  addPlatform(system, gamerTag) {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.put(`/api/user/addplatform`, { system, gamerTag }, { headers })
+  }
+
+  deletePlatform(system, gamerTag) {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.put('/api/user/deleteplatform', { system, gamerTag }, { headers })
+  }
 }

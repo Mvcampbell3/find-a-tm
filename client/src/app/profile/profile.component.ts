@@ -100,13 +100,50 @@ export class ProfileComponent implements OnInit {
       this.showAddPlat = true;
       this.addPlatClicked = true;
     } else {
-      this.showAddPlat = false;
-      this.addPlatClicked = true;
+      this.closePlatModal()
     }
   }
 
   sendToGamesPage() {
     this.router.navigate(['/games'])
+  }
+
+  closePlatModal() {
+    this.showAddPlat = false;
+    this.addPlatClicked = true;
+    this.addPlatformPlat = null;
+    this.addPlatformTag = null;
+  }
+
+  handleAddPlatform() {
+    console.log('clicked')
+    console.log(this.addPlatformPlat, this.addPlatformTag)
+    if (this.addPlatformPlat && this.addPlatformTag) {
+      // Send htto request
+      this.http.addPlatform(this.addPlatformPlat, this.addPlatformTag).subscribe(
+        (data: any) => {
+          console.log(data)
+          this.getGamesList();
+          this.closePlatModal()
+        },
+        (err: any) => {
+          console.log(err)
+        }
+      )
+    }
+  }
+
+  handleDeletePlatform(system, gamerTag) {
+    console.log(system, gamerTag);
+    this.http.deletePlatform(system, gamerTag).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.getGamesList();
+      },
+      (err: any) => {
+        console.log(err)
+      }
+    )
   }
 
 }

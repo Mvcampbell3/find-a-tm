@@ -15,8 +15,8 @@
           <!-- <div [ngClass]='platClasses("switch")' (click)='setPlat("switch")' value='switch'>switch</div> -->
         </div>
         <div class="input-group">
-          <input type="text" placeholder='gamertag...'>
-          <button class="addPlatBtn">Add</button>
+          <input type="text" placeholder='gamertag...' [(ngModel)]='addPlatformTag'>
+          <button class="addPlatBtn" (click)='handleAddPlatform()'>Add</button>
         </div>
 
       </div>
@@ -25,6 +25,7 @@
         Platforms:
         <div *ngFor='let platform of userInfo.platforms' class="platformGroup">
           <div>{{platform.system}}: {{platform.gamerTag}}</div>
+          <div class="delPlat" (click)='handleDeletePlatform(platform.system, platform.gamerTag)'>x</div>
         </div>
 
       </div>
