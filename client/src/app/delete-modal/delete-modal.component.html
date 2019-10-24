@@ -1,10 +1,18 @@
 <div class='deleteModal' [ngStyle]='{"top": modalTop + "px"}'>
-  <div class="deleteConfirm">
+  <div *ngIf='deleteType === "matrix"' class="deleteConfirm">
     <h3>Are you sure you want to delete {{gameTitle}}?</h3>
     <div class="delBtnsArea">
       <button (click)='deleteMatrix()'>Yes</button>
       <button (click)='closeModalFunc()'>Cancel</button>
     </div>
 
+  </div>
+
+  <div *ngIf='deleteType === "platform"' class="deleteConfirm">
+    <h4>Are you sure you want to delete {{deleteGamerTag}} on {{deleteSystem}}? This will also remove all of the games saved to this platform.</h4>
+    <div class="delBtnsArea">
+      <button (click)='deletePlatform()'>Yes</button>
+      <button (click)='closeModalFunc()'>Cancel</button>
+    </div>
   </div>
 </div>

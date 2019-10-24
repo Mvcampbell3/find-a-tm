@@ -11,6 +11,9 @@ export class DeleteModalComponent implements OnInit {
   @Input() modalTop: number;
   @Input() gameTitle: string;
   @Input() modalID: string;
+  @Input() deleteType: string;
+  @Input() deleteSystem: string;
+  @Input() deleteGamerTag: string;
 
   @Output() closeModal = new EventEmitter<boolean>();
 
@@ -31,6 +34,18 @@ export class DeleteModalComponent implements OnInit {
       },
       (err: any) => {
         console.log(err)
+      }
+    )
+  }
+
+  deletePlatform() {
+    this.http.deletePlatform(this.deleteSystem, this.deleteGamerTag).subscribe(
+      (data:any) => {
+        console.log(data);
+        this.closeModal.emit(false);
+      },
+      (err: any) => {
+        console.log(err);
       }
     )
   }

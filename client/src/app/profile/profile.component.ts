@@ -28,6 +28,11 @@ export class ProfileComponent implements OnInit {
   addPlatformPlat: string;
   addPlatformTag: string;
 
+  deleteType: string = null;
+
+  deleteSystem: string = null;
+  deleteGamerTag: string = null;
+
 
   constructor(public userService: UserService, private http: HttpService, private router: Router) { }
 
@@ -46,6 +51,7 @@ export class ProfileComponent implements OnInit {
       this.modalIDSend = matrixID;
       this.gameTitleSend = title;
       this.modalTop = window.scrollY;
+      this.deleteType = 'matrix'
       this.showDelModal = true;
     } else {
       console.log('This will be sent to game list players page')
@@ -113,6 +119,9 @@ export class ProfileComponent implements OnInit {
     this.addPlatClicked = true;
     this.addPlatformPlat = null;
     this.addPlatformTag = null;
+
+    this.deleteGamerTag = null;
+    this.deleteSystem = null;
   }
 
   handleAddPlatform() {
@@ -135,15 +144,19 @@ export class ProfileComponent implements OnInit {
 
   handleDeletePlatform(system, gamerTag) {
     console.log(system, gamerTag);
-    this.http.deletePlatform(system, gamerTag).subscribe(
-      (data: any) => {
-        console.log(data);
-        this.getGamesList();
-      },
-      (err: any) => {
-        console.log(err)
-      }
-    )
+    // this.http.deletePlatform(system, gamerTag).subscribe(
+    //   (data: any) => {
+    //     console.log(data);
+    //     this.getGamesList();
+    //   },
+    //   (err: any) => {
+    //     console.log(err)
+    //   }
+    // )
+    this.deleteType = 'platform';
+    this.deleteSystem = system;
+    this.deleteGamerTag = gamerTag;
+    this.showDelModal = true;
   }
 
 }
