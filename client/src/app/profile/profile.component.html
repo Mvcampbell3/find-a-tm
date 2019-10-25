@@ -8,7 +8,7 @@
       </div>
 
       <div [ngClass]="setAddClass()">
-        <h4>Add Platform</h4>
+        <h4 class='text-center'>Add Platform</h4>
         <div class="platHolder">
           <div [ngClass]='platClasses("ps4")' (click)='setPlat("ps4")' value='ps4'>ps4</div>
         </div>
@@ -17,9 +17,13 @@
           <button class="addPlatBtn" (click)='handleAddPlatform()'>Add</button>
         </div>
 
+
       </div>
 
       <div class="platforms">
+        <div class="errorMessages" *ngIf='platformErrorMessages.length > 0'>
+          <h6 class='red-error text-center mb-2' *ngFor='let errorMessage of platformErrorMessages'>{{errorMessage.msg}}</h6>
+        </div>
         Platforms:
         <div *ngFor='let platform of userInfo.platforms' class="platformGroup">
           <div>{{platform.system}}: {{platform.gamerTag}}</div>

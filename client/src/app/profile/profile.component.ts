@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { HttpService } from '../services/http.service';
 import { Router } from '@angular/router';
+import { UserInfoObject } from '../models/userInfoObject';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  userInfo: object;
+  userInfo: UserInfoObject;
   matrixInfo: object[];
 
   newGame: string = '';
@@ -32,6 +33,8 @@ export class ProfileComponent implements OnInit {
 
   deleteSystem: string = null;
   deleteGamerTag: string = null;
+
+  platformErrorMessages: { msg: string }[] = [];
 
 
   constructor(public userService: UserService, private http: HttpService, private router: Router) { }
@@ -126,33 +129,58 @@ export class ProfileComponent implements OnInit {
 
   handleAddPlatform() {
     console.log('clicked')
+    this.platformErrorMessages = [];
     console.log(this.addPlatformPlat, this.addPlatformTag)
     if (this.addPlatformPlat && this.addPlatformTag) {
-      // Send htto request
-      this.http.addPlatform(this.addPlatformPlat, this.addPlatformTag).subscribe(
-        (data: any) => {
-          console.log(data)
-          this.getGamesList();
-          this.closePlatModal()
-        },
-        (err: any) => {
-          console.log(err)
+
+      const systems = this.userInfo.platforms.map(platform => platform.system);
+      const gamerTags = this.userInfo.platforms.map(platform => platform.gamerTag);
+
+      let allowCreate = false;
+
+      const loopTags = () => {
+        console.log('looping through tags');
+        if (gamerTags.indexOf(this.addPlatformTag) !== -1) {
+          if (systems[gamerTags.indexOf(this.addPlatformTag)] === this.addPlatformPlat) {
+            this.platformErrorMessages.push({ msg: `Already have ${this.addPlatformTag} for ${this.addPlatformPlat}` })
+            console.log(this)
+            console.log('already system w/ gamertag')
+            return;
+          } else {
+            systems.splice(gamerTags.indexOf(this.addPlatformTag), 1);
+            loopTags();
+          }
+        } else {
+          console.log('unique gamertag')
+          allowCreate = true;
         }
-      )
+      }
+
+      loopTags()
+
+      if (allowCreate) {
+        // Send http request
+        this.http.addPlatform(this.addPlatformPlat, this.addPlatformTag).subscribe(
+          (data: any) => {
+            console.log(data)
+            this.getGamesList();
+            this.closePlatModal()
+          },
+          (err: any) => {
+            console.log(err)
+            this.platformErrorMessages.push({msg: "Server unable to complete task, please try again"})
+          }
+        )
+      }
+
+
+
+
     }
   }
 
   handleDeletePlatform(system, gamerTag) {
     console.log(system, gamerTag);
-    // this.http.deletePlatform(system, gamerTag).subscribe(
-    //   (data: any) => {
-    //     console.log(data);
-    //     this.getGamesList();
-    //   },
-    //   (err: any) => {
-    //     console.log(err)
-    //   }
-    // )
     this.deleteType = 'platform';
     this.deleteSystem = system;
     this.deleteGamerTag = gamerTag;
