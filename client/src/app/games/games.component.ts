@@ -23,6 +23,8 @@ export class GamesComponent implements OnInit, OnDestroy {
   gameIDs: String[] = [];
   platformArray: string[] = [];
 
+  showButtons: boolean = false;
+
   constructor(
     private http: HttpService,
     public userService: UserService,
@@ -64,6 +66,7 @@ export class GamesComponent implements OnInit, OnDestroy {
         console.log(this.gameIDs)
         this.platformArray = [];
         userInfo.platforms.forEach(plat => this.platformArray.push(plat))
+        this.showButtons = true;
       },
       err => {
         console.log(err)
@@ -87,5 +90,14 @@ export class GamesComponent implements OnInit, OnDestroy {
     this.showGamesModal = value;
     this.getGamesList();
     this.getUserProfile();
+  }
+
+  setButtonsClass() {
+    const classes = {
+      'buttonArea': true,
+      'hidden': !this.showButtons
+    }
+
+    return classes
   }
 }

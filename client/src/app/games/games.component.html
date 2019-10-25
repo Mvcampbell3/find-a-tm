@@ -13,7 +13,7 @@
 
     </div>
 
-    <div class="buttonArea">
+    <div [ngClass]="setButtonsClass()">
       <button *ngIf='gameIDs.indexOf(game._id) === -1' class="gameBtn" (click)='viewMatrix($event, game.title, game._id)'>Add to
         Games</button>
       <button class="gameBtn" [value]='game._id' (click)='viewPlayers($event)'>View Players</button>
