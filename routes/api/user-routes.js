@@ -51,7 +51,7 @@ router.post('/signup', (req, res) => {
               })
               .catch(err => {
                 console.log(err);
-                res.status(422).json(err);
+                res.status(422).json({err});
               })
           })
         })

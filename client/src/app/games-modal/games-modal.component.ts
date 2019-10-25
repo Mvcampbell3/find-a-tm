@@ -11,10 +11,12 @@ export class GamesModalComponent implements OnInit {
   @Input() modalTop: number;
   @Input() gameTitle: string;
   @Input() gameID: string;
-  @Input() platformArray: {'system': string, 'gamerTag': string}[];
+  @Input() platformArray: { 'system': string, 'gamerTag': string }[];
   selfRating: number;
   gamePlatform: string;
   gamerTag: string;
+
+  errorMessages: { msg: string }[] = [];
 
   @Output() closeModal = new EventEmitter<boolean>();
 
@@ -27,19 +29,34 @@ export class GamesModalComponent implements OnInit {
     this.selfRating = null;
     this.gamePlatform = null;
     this.gamerTag = null;
+    this.errorMessages = [];
     this.closeModal.emit(false);
   }
 
   createMatrix(e) {
     console.log(this.gameID);
     console.log(this.selfRating);
-    this.http.createMatrix(this.gameID, this.selfRating, this.gamePlatform, this.gamerTag).subscribe(
-      (data) =>  {
-        console.log(data)
-        this.closeModal.emit(false)
-      },
-      (err) => console.log(err)
-    )
+    this.errorMessages = [];
+    if (this.gameID && this.selfRating && this.gamerTag) {
+      this.http.createMatrix(this.gameID, this.selfRating, this.gamePlatform, this.gamerTag).subscribe(
+        (data) => {
+          console.log(data)
+          this.closeModal.emit(false)
+        },
+        (err) => {
+          console.log(err)
+          this.errorMessages.push({ msg: 'There was an error on the server, please try again' })
+        }
+      )
+    } else {
+      if (!this.selfRating) {
+        this.errorMessages.push({ msg: 'Missing self rating information' })
+      }
+      if (!this.gamerTag) {
+        this.errorMessages.push({ msg: 'Missing platform' })
+      }
+    }
+
   }
 
   saveRating(e) {
