@@ -4,9 +4,10 @@
   <div class="players" *ngIf='playersList.length > 0'>
     <h4 class="text-center">Players List</h4>
     <div class="player" *ngFor='let player of playersList, let i = index'>
-      <h5 class="playerInfo">{{player.gamerTag}}</h5>
-      <h5 class="playerInfo">Self Rating: {{player.selfRating}}</h5>
-      <h5 class="playerInfo">Last Online: {{player.latest}}</h5>
+      <p class="playerInfo tag">{{player.gamerTag}}</p>
+      <p class="playerInfo system">{{player.platform}}</p>
+      <p class="playerInfo rating">Self Rating: {{player.selfRating}}</p>
+      <p class="playerInfo time"><span class="mobile-hide">Last Online: </span>{{player.latest}}</p>
     </div>
   </div>
 </div>

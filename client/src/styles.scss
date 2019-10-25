@@ -16,15 +16,6 @@
   text-transform: capitalize;
 }
 
-.player{
-  display: grid;
-  width: 80%;
-  padding: 8px 20px;
-  background-color: lightcyan;
-  margin: 0 auto;
-  grid-template-columns: 1fr 100px 200px;
-}
-
 button{
   cursor: pointer;
 }
@@ -46,4 +37,13 @@ button{
 
 .mb-2{
   margin-bottom: .5em;
+}
+
+
+
+.mobile-hide {
+  display: inline;
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
 }
