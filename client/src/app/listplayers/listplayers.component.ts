@@ -12,10 +12,16 @@ import { PlayerMatrix } from "../models/player";
 export class ListplayersComponent implements OnInit {
 
   playersList: PlayerMatrix[] = [];
+  gameInfo: object = null;
 
   constructor(private http: HttpService, private router: Router, public userService: UserService) { }
 
   ngOnInit() {
+    this.getPlayersList();
+    this.getGameInfo();
+  }
+
+  getPlayersList() {
     this.http.getPlayersListGame(this.http.gameViewPlayers).subscribe(
       (result: PlayerMatrix[]) => {
         console.log(result);
@@ -23,6 +29,18 @@ export class ListplayersComponent implements OnInit {
         this.setDates()
       },
       (err: any) => console.log(err)
+    )
+  }
+
+  getGameInfo() {
+    this.http.getGameInfo(this.http.gameViewPlayers).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.gameInfo = data
+      },
+      (err: any) => {
+        console.log(err)
+      }
     )
   }
 

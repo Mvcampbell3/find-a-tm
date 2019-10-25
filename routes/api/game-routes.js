@@ -58,5 +58,11 @@ router.get('/listplayers/:id', checkAuth, (req, res) => {
     .catch(err => res.status(400).json(err))
 })
 
+router.get('/info/:id', checkAuth, (req, res) => {
+  db.Game.findById(req.params.id)
+    .then(game => res.status(200).json(game))
+    .catch(err => res.status(404).json({err}))
+})
+
 
 module.exports = router;

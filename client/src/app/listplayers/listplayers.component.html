@@ -1,10 +1,12 @@
-<div class="playerHolder" *ngIf='playersList.length > 0'>
-  <h3 class="text-center upper-case">{{playersList[0].gameID.title}}</h3>
-  <img class="icon" [src]='playersList[0].gameID.img_url' [alt]='playersList[0].gameID.title + " icon"'>
-  <h4 class="text-center">Players List</h4>
-  <div class="player" *ngFor='let player of playersList, let i = index'>
-    <h5 class="playerInfo">{{player.gamerTag}}</h5>
-    <h5 class="playerInfo">Self Rating: {{player.selfRating}}</h5>
-    <h5 class="playerInfo">Last Online: {{player.latest}}</h5>
+<div class="playerHolder" *ngIf='gameInfo'>
+  <h3 class="text-center upper-case">{{gameInfo.title}}</h3>
+  <img class="icon" [src]='gameInfo.img_url' [alt]='gameInfo.img_url + " icon"'>
+  <div class="players" *ngIf='playersList.length > 0'>
+    <h4 class="text-center">Players List</h4>
+    <div class="player" *ngFor='let player of playersList, let i = index'>
+      <h5 class="playerInfo">{{player.gamerTag}}</h5>
+      <h5 class="playerInfo">Self Rating: {{player.selfRating}}</h5>
+      <h5 class="playerInfo">Last Online: {{player.latest}}</h5>
+    </div>
   </div>
 </div>
