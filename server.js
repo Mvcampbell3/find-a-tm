@@ -22,13 +22,13 @@ app.use(express.static(path.join(__dirname, "client/dist/client")))
 
 app.use(routes)
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefinder",
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefindertest",
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then(() => {
     console.log('mongodb connected');
     if (seedDB) {
       gameSeeds.forEach(game => {
-        const newGame = db.newGame({
+        const newGame = new db.Game({
           title: game.title,
           img_url: game.img_url,
           developer: game.developer,
