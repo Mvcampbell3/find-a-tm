@@ -18,8 +18,8 @@
       </div>
     </div>
 
-    <div class="errors" *ngIf='errorMessages.length > 0' >
-      <h6 *ngFor='let errorMessage of errorMessages'>{{errorMessage.msg}}</h6>
+    <div class="errors" *ngIf='errorMessages.length > 0'>
+      <h6 class='red-error text-center mb-2' *ngFor='let errorMessage of errorMessages'>{{errorMessage.msg}}</h6>
     </div>
 
     <div class="buttonArea">
