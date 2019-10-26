@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3001;
 const routes = require('./routes');
 const path = require('path')
 const gameSeeds = require('./seeds/gameSeed');
-const seedDB = false;
+const seedDB = true;
 const db = require('./models');
 
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +27,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefinder"
   .then(() => {
     console.log('mongodb connected');
     if (seedDB) {
+      console.log('seeding db games')
       db.Game.remove()
         .then(
           gameSeeds.forEach(game => {
