@@ -36,13 +36,16 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefindert
     // If seed, run seed functions
     if (seedDB) {
       console.log('removing matrix and game dbs and seeding db games')
+      // Remove Matrixes from Users
       db.Matrix.find()
         .then(matrixes => {
           matrixes.forEach(matrix => matrix.remove());
         })
-      db.Game.remove()
+      
+      // Delete all games then seed
+      db.Game.deleteMany()
         .then(
-          gameSeeds.forEach(game => {
+          gameSeeds.forEach((game, i) => {
             const newGame = new db.Game({
               title: game.title,
               img_url: game.img_url,
@@ -53,11 +56,16 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefindert
               ps4: game.ps4
             })
             newGame.save()
+              .then(() => {
+                console.log(`Loaded ${i + 1} of ${gameSeeds.length} games`)
+              })
           })
         )
-      db.User.remove()
+
+      // Delete all users then seed
+      db.User.deleteMany()
         .then(() => {
-          userSeeds.forEach(user => {
+          userSeeds.forEach((user, i) => {
 
             bcrypt.genSalt(10, function(err, salt) {
               if (err) {
@@ -69,13 +77,12 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefindert
                   email: user.email,
                   password: hash
                 })
-
-                newUser.save();
+                newUser.save()
+                  .then(() => {
+                    console.log(`Loaded ${i + 1} of ${userSeeds.length} users`)
+                  })
               })
             })
-
-
-
           })
         })
     }
