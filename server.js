@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3001;
 const routes = require('./routes');
 const path = require('path')
 const gameSeeds = require('./seeds/gameSeed');
-const seedDB = true;
+const seedDB = false;
 const db = require('./models');
 
 app.use(express.urlencoded({ extended: true }));
