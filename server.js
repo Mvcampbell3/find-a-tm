@@ -27,7 +27,11 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefinder"
   .then(() => {
     console.log('mongodb connected');
     if (seedDB) {
-      console.log('seeding db games')
+      console.log('removing matrix and game dbs and seeding db games')
+      db.Matrix.find()
+        .then(matrixes => {
+          matrixes.forEach(matrix => matrix.remove());
+        })
       db.Game.remove()
         .then(
           gameSeeds.forEach(game => {
