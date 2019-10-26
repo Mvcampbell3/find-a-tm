@@ -4,28 +4,36 @@ const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3001;
 const routes = require('./routes');
 const path = require('path')
-const gameSeeds = require('./seeds/gameSeed');
+
+// For creating seed db
+
 const seedDB = false;
 const db = require('./models');
+const gameSeeds = require('./seeds/gameSeed');
+const userSeeds = require('./seeds/userSeed');
+
+// For creating seed user-password
+const bcrypt = require('bcrypt');
+
+// Init Middleware
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
 require('dotenv').config()
 
-// app.use('*', (req, res, next) => {
-//   console.log(req.originalUrl);
-//   next()
-// })
-
 app.use(express.static(path.join(__dirname, "client/dist/client")))
 
 app.use(routes)
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefinder",
+// Connect Mongoose, check if want to seed db;
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefindertest",
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then(() => {
     console.log('mongodb connected');
+
+    // If seed, run seed functions
     if (seedDB) {
       console.log('removing matrix and game dbs and seeding db games')
       db.Matrix.find()
@@ -47,7 +55,33 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefinder"
             newGame.save()
           })
         )
+      db.User.remove()
+        .then(() => {
+          userSeeds.forEach(user => {
+
+            bcrypt.genSalt(10, function(err, salt) {
+              if (err) {
+                throw err;
+              }
+              bcrypt.hash(user.password, salt, function(err, hash) {
+                const newUser = new db.User({
+                  username: user.username,
+                  email: user.email,
+                  password: hash
+                })
+
+                newUser.save();
+              })
+            })
+
+
+
+          })
+        })
     }
+    // End of seed functions
+
+    // Start backend server
     app.listen(PORT, () => {
       console.log(`server is live on http://localhost:${PORT}`)
     })
