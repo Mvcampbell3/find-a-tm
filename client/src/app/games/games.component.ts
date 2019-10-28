@@ -20,10 +20,13 @@ export class GamesComponent implements OnInit, OnDestroy {
   gameSendID: string;
 
   games: Game[] = [];
+  displayGames: Game[] = [];
   gameIDs: String[] = [];
   platformArray: string[] = [];
 
   showButtons: boolean = false;
+
+  searchTerm: string = '';
 
   constructor(
     private http: HttpService,
@@ -46,6 +49,7 @@ export class GamesComponent implements OnInit, OnDestroy {
       (result: Array<Game>) => {
         console.log(result);
         this.games = result;
+        this.displayGames = result;
       },
       err => {
         console.log(err);
@@ -99,5 +103,9 @@ export class GamesComponent implements OnInit, OnDestroy {
     }
 
     return classes
+  }
+
+  searchGameTitles() {
+    this.displayGames = this.games.filter(game => game.title.toLowerCase().includes(this.searchTerm.toLowerCase()))
   }
 }

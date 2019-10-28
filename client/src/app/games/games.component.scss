@@ -1,3 +1,26 @@
+.search{
+  width: 60%;
+  margin: .5em auto;
+  min-width: 300px;
+  max-width: 500px;
+
+  input[type=text] {
+    width: 100%;
+    border: none;
+    border-bottom: 1px black solid;
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+
+    &:focus{
+      outline: .25px slategray solid;
+      background-color: whitesmoke;
+    }
+  }
+
+  
+}
+
 .gameHolder{
   width: fit-content;
   margin: 1em auto;
