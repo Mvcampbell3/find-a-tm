@@ -11,6 +11,8 @@
         <h4 class='text-center'>Add Platform</h4>
         <div class="platHolder">
           <div [ngClass]='platClasses("ps4")' (click)='setPlat("ps4")' value='ps4'>ps4</div>
+          <div [ngClass]='platClasses("xbox")' (click)='setPlat("xbox")' value='xbox'>xbox</div>
+          <div [ngClass]='platClasses("switch")' (click)='setPlat("switch")' value='switch'>switch</div>
         </div>
         <div class="input-group">
           <input type="text" placeholder='gamertag...' [(ngModel)]='addPlatformTag'>
