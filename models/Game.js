@@ -17,6 +17,16 @@ const GameSchema = new Schema({
     default: false
   },
 
+  xbox: {
+    type: Boolean, 
+    default: false
+  },
+
+  nin_switch: {
+    type: Boolean,
+    default: false
+  },
+
   team_game: {
     type: Boolean,
     default: false

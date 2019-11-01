@@ -73,7 +73,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(29, 29, 29, 0.856);
+    background-color: rgba(219, 219, 219, 0.856);
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -85,6 +85,7 @@
       background-color: slategray;
       color: white;
       border-radius: 10px;
+      margin-top: -50px;
 
       .line-across{
         width: 100%;

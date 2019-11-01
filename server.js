@@ -53,7 +53,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefindert
               team_game: game.team_game,
               reviewed: game.reviewed,
               userId: game.userId,
-              ps4: game.ps4
+              ps4: game.ps4,
+              xbox: game.xbox,
+              nin_switch: game.nin_switch
             })
             newGame.save()
               .then(() => {
