@@ -93,6 +93,20 @@
     border-radius: 5px;
     padding: 3px;
     padding-left: 10px;
+
+    .platHolder{
+      color: green;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      // justify-content: center;
+      .plat{
+        width: 90%;
+        text-align: center;
+        color: white;
+        padding: 5px 0;
+        background-color: slategrey;
+      }
+    }
   }
 
   .buttonArea{
