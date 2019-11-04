@@ -29,7 +29,7 @@ export class UserService {
     const token = JSON.parse(localStorage.getItem('token-find-tm'));
     if (token) {
       console.log("token is here")
-      this.http.checkAuth(token).subscribe(
+      this.http.checkAuth().subscribe(
         result => {
           console.log(result);
           this.user.next(true)
@@ -49,8 +49,7 @@ export class UserService {
   // This will run everytime that the user reloads the page, spec. navbar app.component
   // Do we want to update the time that much?
   updateUserOnline() {
-    const token = JSON.parse(localStorage.getItem('token-find-tm'));
-    this.http.updateUserOnline(token).subscribe(
+    this.http.updateUserOnline().subscribe(
       result => console.log(result),
       err => console.log(err)
     )

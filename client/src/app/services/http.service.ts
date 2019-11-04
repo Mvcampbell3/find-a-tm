@@ -30,12 +30,14 @@ export class HttpService {
     return this._http.get("/api/game/all", { headers })
   }
 
-  checkAuth(token) {
+  checkAuth() {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
     return this._http.get("/api/user/auth", { headers })
   }
 
-  updateUserOnline(token) {
+  updateUserOnline() {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
     return this._http.put('/api/user/updateonline', { date: Date.now() }, { headers })
   }
@@ -47,12 +49,14 @@ export class HttpService {
     return this._http.get(`/api/game/info/${gameID}`, { headers });
   }
 
-  getUserProfile(token) {
+  getUserProfile() {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
     return this._http.get("/api/user/profile", { headers })
   }
 
-  getUserGamesList(token) {
+  getUserGamesList() {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'))
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`)
     return this._http.get("/api/user/gameList", { headers })
   }

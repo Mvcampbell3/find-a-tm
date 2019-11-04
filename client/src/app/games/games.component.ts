@@ -59,8 +59,7 @@ export class GamesComponent implements OnInit, OnDestroy {
   }
 
   getUserProfile() {
-    const token = JSON.parse(localStorage.getItem('token-find-tm'));
-    this.profileSubscription = this.http.getUserGamesList(token).subscribe(
+    this.profileSubscription = this.http.getUserGamesList().subscribe(
       (result: any) => {
         console.log(result);
         const matrixes = result.matrixInfo;

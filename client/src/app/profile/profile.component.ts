@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit {
 
   getGamesList() {
     const token = JSON.parse(localStorage.getItem('token-find-tm'))
-    this.http.getUserProfile(token).subscribe(
+    this.http.getUserProfile().subscribe(
       (data: any) => {
         console.log(data)
         console.log(data.userInfo)
