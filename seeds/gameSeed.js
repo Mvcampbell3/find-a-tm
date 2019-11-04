@@ -3,7 +3,7 @@ const UFC = {
   developer: 'EASports',
   ps4: true,
   xbox: true,
-  nin_switch: true,
+  nin_switch: false,
   team_game: false,
   img_url: 'https://b.thumbs.redditmedia.com/VOiVgeo3FqOo8uBCttmGviQnj9vQhC6BTa6PB64IiCk.png',
   reviewed: true,
@@ -27,7 +27,7 @@ const Hitman2 = {
   developer: 'IO Interactive',
   ps4: true,
   xbox: true,
-  nin_switch: true,
+  nin_switch: false,
   team_game: true,
   img_url: 'https://tpucdn.com/review/hitman-2-benchmark-performance-test/images/small-v1542925931.png',
   reviewed: true,
@@ -50,7 +50,7 @@ const BlackOps4 = {
   title: 'Black Ops 4',
   developer: 'Treyarch',
   ps4: true,
-  nin_switch: true,
+  nin_switch: false,
   xbox: true,
   team_game: true,
   img_url: 'http://www.ugnonline.co.uk/wp-content/uploads/2019/03/black-ops-4-game-square.jpg',
@@ -63,7 +63,7 @@ const NHL20 = {
   developer: 'EASports',
   ps4: true,
   xbox: true,
-  nin_switch: true,
+  nin_switch: false,
   team_game: true,
   img_url: 'https://apprecs.org/ios/images/app-icons/256/3d/465092669.jpg',
   reviewed: true,
@@ -74,8 +74,8 @@ const MLB19 = {
   title: 'MLB The Show 19',
   developer: 'Sony Interactive Entertainment',
   ps4: true,
-  xbox: true,
-  nin_switch: true,
+  xbox: false,
+  nin_switch: false,
   team_game: false,
   img_url: 'https://static.truetrophies.com/boxart/Game_8263.jpg',
   reviewed: true,
@@ -87,7 +87,7 @@ const Madden20 = {
   developer: 'EA Tiburon',
   ps4: true,
   xbox: true,
-  nin_switch: true,
+  nin_switch: false,
   team_game: true,
   img_url: 'https://static-hosted.stats.com/fb/photos/201904251746639659641-p3.jpeg',
   reviewed: true,
@@ -99,7 +99,7 @@ const GTAV = {
   developer: 'Rockstar',
   ps4: true,
   xbox: true,
-  nin_switch: true,
+  nin_switch: false,
   team_game: true,
   img_url: 'https://i.pinimg.com/originals/86/19/92/861992cd884c86938f9f01d7ac4dc4ea.png',
   reviewed: true,
@@ -111,6 +111,7 @@ const Minecraft = {
   developer: 'Mojang',
   ps4: true,
   xbox: true,
+  nin_switch: true,
   team_game: true,
   img_url: 'https://static-s.aa-cdn.net/img/ios/479516143/7983bb01af5cc9d338e0701f226e8525?v=1',
   reviewed: true,
@@ -134,17 +135,41 @@ const Destiny2 = {
   developer: 'Bungie',
   ps4: true,
   xbox: true,
-  nin_switch: true,
+  nin_switch: false,
   team_game: true,
   img_url: 'https://tpucdn.com/reviews/Performance_Analysis/Destiny_2_Beta/images/small-v1542925931.png',
   reviewed: true,
   userId: 'default'
 }
 
+const Stardew = {
+  title: 'Stardew Valley',
+  developer: 'Concerned Ape',
+  ps4: true,
+  xbox: true,
+  nin_switch: true,
+  team_game: true,
+  img_url: 'https://yuzu-emu.org/images/game/boxart/stardew-valley.png',
+  reviewed: true,
+  userId: 'default'
+}
+
+const ModernWar = {
+  title: 'Modern Warfare',
+  developer: 'Infinity Ward',
+  ps4: true,
+  xbox: true,
+  nin_switch: false,
+  team_game: true,
+  img_url: 'https://www.toornament.com/media/file/2993795450650296320/logo_large?v=1572457665',
+  reviewed: true,
+  userId: 'default'
+}
+
 module.exports = [
-  UFC, 
-  Hitman2, 
-  RocketLeague, 
+  UFC,
+  Hitman2,
+  RocketLeague,
   Fortnite,
   BlackOps4,
   NHL20,
@@ -153,5 +178,7 @@ module.exports = [
   GTAV,
   Minecraft,
   OverWatch,
-  Destiny2
+  Destiny2,
+  Stardew,
+  ModernWar
 ];
