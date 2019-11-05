@@ -7,7 +7,7 @@ const UFC = {
   team_game: false,
   img_url: 'https://b.thumbs.redditmedia.com/VOiVgeo3FqOo8uBCttmGviQnj9vQhC6BTa6PB64IiCk.png',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const RocketLeague = {
@@ -19,7 +19,7 @@ const RocketLeague = {
   team_game: true,
   img_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa7E7wykeEga3VaXlONx1S0ZiGRLqOZMoz5Yk4REThDrBN6GWvpw',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const Hitman2 = {
@@ -31,7 +31,7 @@ const Hitman2 = {
   team_game: true,
   img_url: 'https://tpucdn.com/review/hitman-2-benchmark-performance-test/images/small-v1542925931.png',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const Fortnite = {
@@ -43,7 +43,7 @@ const Fortnite = {
   team_game: true,
   img_url: 'https://i.imgur.com/qxm2OAQ.jpg',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const BlackOps4 = {
@@ -55,7 +55,7 @@ const BlackOps4 = {
   team_game: true,
   img_url: 'http://www.ugnonline.co.uk/wp-content/uploads/2019/03/black-ops-4-game-square.jpg',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const NHL20 = {
@@ -67,7 +67,7 @@ const NHL20 = {
   team_game: true,
   img_url: 'https://apprecs.org/ios/images/app-icons/256/3d/465092669.jpg',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const MLB19 = {
@@ -79,7 +79,7 @@ const MLB19 = {
   team_game: false,
   img_url: 'https://static.truetrophies.com/boxart/Game_8263.jpg',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const Madden20 = {
@@ -91,7 +91,7 @@ const Madden20 = {
   team_game: true,
   img_url: 'https://static-hosted.stats.com/fb/photos/201904251746639659641-p3.jpeg',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const GTAV = {
@@ -103,7 +103,7 @@ const GTAV = {
   team_game: true,
   img_url: 'https://i.pinimg.com/originals/86/19/92/861992cd884c86938f9f01d7ac4dc4ea.png',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const Minecraft = {
@@ -115,7 +115,7 @@ const Minecraft = {
   team_game: true,
   img_url: 'https://static-s.aa-cdn.net/img/ios/479516143/7983bb01af5cc9d338e0701f226e8525?v=1',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const OverWatch = {
@@ -127,7 +127,7 @@ const OverWatch = {
   team_game: true,
   img_url: 'http://wwwbest-kodi-guideseu-9ueui6uviy.stackpathdns.com/wp-content/uploads/2018/04/icon-3.jpg',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const Destiny2 = {
@@ -139,7 +139,7 @@ const Destiny2 = {
   team_game: true,
   img_url: 'https://tpucdn.com/reviews/Performance_Analysis/Destiny_2_Beta/images/small-v1542925931.png',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const Stardew = {
@@ -151,7 +151,7 @@ const Stardew = {
   team_game: true,
   img_url: 'https://yuzu-emu.org/images/game/boxart/stardew-valley.png',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 const ModernWar = {
@@ -163,7 +163,7 @@ const ModernWar = {
   team_game: true,
   img_url: 'https://www.toornament.com/media/file/2993795450650296320/logo_large?v=1572457665',
   reviewed: true,
-  userId: 'default'
+  userID: 'default'
 }
 
 module.exports = [

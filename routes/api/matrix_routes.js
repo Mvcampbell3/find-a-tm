@@ -23,7 +23,7 @@ router.post('/newmatrix', checkAuth, (req, res) => {
 
 
 
-  db.User.findById(req.userId)
+  db.User.findById(req.userID)
     .then(user => {
 
       const { gameID, platform, selfRating, gamerTag } = req.body;
@@ -39,7 +39,7 @@ router.post('/newmatrix', checkAuth, (req, res) => {
         }
 
         const newMatrix = new db.Matrix({
-          userID: req.userId,
+          userID: req.userID,
           gameID,
           platform,
           selfRating,
@@ -60,13 +60,13 @@ router.post('/newmatrix', checkAuth, (req, res) => {
 })
 
 router.delete('/delete/:id', checkAuth, (req, res) => {
-  const user = req.userId;
+  const user = req.userID;
   console.log(typeof user)
   db.Matrix.findById(req.params.id)
     .then(matrix => {
       console.log(typeof matrix.userID.toString());
       console.log(user)
-      if (matrix.userID.toString() === req.userId) {
+      if (matrix.userID.toString() === req.userID) {
         // res.json({ msg: 'will delete' })
         matrix.remove()
           .then(result => {

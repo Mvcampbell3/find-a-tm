@@ -42,7 +42,7 @@ const GameSchema = new Schema({
     default: false
   },
 
-  userId: {
+  userID: {
     type: String,
     required: true
   }

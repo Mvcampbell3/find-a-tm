@@ -52,7 +52,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/teammatefindert
               developer: game.developer,
               team_game: game.team_game,
               reviewed: game.reviewed,
-              userId: game.userId,
+              userID: game.userID,
               ps4: game.ps4,
               xbox: game.xbox,
               nin_switch: game.nin_switch

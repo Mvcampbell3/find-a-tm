@@ -97,12 +97,12 @@ router.post('/login', (req, res) => {
 })
 
 router.get('/auth', checkAuth, (req, res) => {
-  res.status(200).json({ user: true, id: req.userId })
+  res.status(200).json({ user: true, id: req.userID })
 })
 
 router.get('/profile', checkAuth, (req, res) => {
-  console.log(req.userId)
-  const promises = [db.User.findById(req.userId).select('-password'), db.Matrix.find({ userID: req.userId }).populate('gameID')];
+  console.log(req.userID)
+  const promises = [db.User.findById(req.userID).select('-password'), db.Matrix.find({ userID: req.userID }).populate('gameID')];
   Promise.all(promises)
     .then(results => {
       const profile = {
@@ -117,7 +117,7 @@ router.get('/profile', checkAuth, (req, res) => {
 })
 
 router.get('/gamelist', checkAuth, (req, res) => {
-  const promises = [db.User.findById(req.userId).select('-password'), db.Matrix.find({ userID: req.userId })];
+  const promises = [db.User.findById(req.userID).select('-password'), db.Matrix.find({ userID: req.userID })];
   Promise.all(promises)
     .then(results => {
       const profile = {
@@ -133,7 +133,7 @@ router.get('/gamelist', checkAuth, (req, res) => {
 
 router.put('/updateonline', checkAuth, (req, res) => {
   console.log(req.body.date);
-  db.User.findById(req.userId).select("-password")
+  db.User.findById(req.userID).select("-password")
     .then(user => {
       user.lastOnline = req.body.date;
       user.save()
@@ -154,7 +154,7 @@ router.put('/updateonline', checkAuth, (req, res) => {
 
 router.put('/addplatform', checkAuth, (req, res) => {
   console.log(req.body.system, req.body.gamerTag);
-  db.User.findByIdAndUpdate(req.userId, { $push: { platforms: { system: req.body.system, gamerTag: req.body.gamerTag } } })
+  db.User.findByIdAndUpdate(req.userID, { $push: { platforms: { system: req.body.system, gamerTag: req.body.gamerTag } } })
     .then(result => {
       res.status(200).json(result)
     })
@@ -173,7 +173,7 @@ router.put('/deleteplatform', checkAuth, (req, res) => {
           .then(result => {
             console.log(result);
             console.log('this ran')
-            db.User.findByIdAndUpdate(req.userId, { $pull: { platforms: { system, gamerTag } } })
+            db.User.findByIdAndUpdate(req.userID, { $pull: { platforms: { system, gamerTag } } })
               .then(end => {
                 console.log(end);
                 res.status(200).json(end);
@@ -188,7 +188,7 @@ router.put('/deleteplatform', checkAuth, (req, res) => {
           })
         )
       } else {
-        db.User.findByIdAndUpdate(req.userId, { $pull: { platforms: { system, gamerTag } } })
+        db.User.findByIdAndUpdate(req.userID, { $pull: { platforms: { system, gamerTag } } })
           .then(end => {
             console.log(end);
             res.status(200).json(end);

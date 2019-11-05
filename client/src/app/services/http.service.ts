@@ -90,4 +90,14 @@ export class HttpService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this._http.put('/api/user/deleteplatform', { system, gamerTag }, { headers })
   }
+
+  createSuggestion(game_title) {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.post('/api/suggestion/newsuggestion', { game_title }, { headers })
+  }
+
+  getSuggestions() {
+    return this._http.get('/api/suggestion')
+  }
 }

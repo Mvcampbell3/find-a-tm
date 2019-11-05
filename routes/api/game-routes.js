@@ -33,7 +33,7 @@ router.post('/newgame', checkAuth, (req, res) => {
     developer,
     ps4,
     team_game,
-    userId: req.userId
+    userID: req.userID
   })
 
   newGame.save()
