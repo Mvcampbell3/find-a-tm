@@ -23,6 +23,7 @@ export class GamesComponent implements OnInit, OnDestroy {
   displayGames: Game[] = [];
   gameIDs: String[] = [];
   platformArray: string[] = [];
+  gamePlatforms: string[] = [];
 
   showButtons: boolean = false;
 
@@ -82,11 +83,13 @@ export class GamesComponent implements OnInit, OnDestroy {
     this.router.navigate(['/listplayers'])
   }
 
-  viewMatrix(e, title, gameID) {
+  viewMatrix(e, title, gameID, gamePlatforms) {
+    // Need to add platform Array for the game
     this.modalTop = window.scrollY;
     this.gameTitle = title;
     this.showGamesModal = true;
-    this.gameSendID = gameID
+    this.gameSendID = gameID;
+    this.gamePlatforms = gamePlatforms;
   }
 
   closeMatrix(value) {

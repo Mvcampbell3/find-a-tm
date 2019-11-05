@@ -12,6 +12,7 @@ export class GamesModalComponent implements OnInit {
   @Input() gameTitle: string;
   @Input() gameID: string;
   @Input() platformArray: { 'system': string, 'gamerTag': string }[];
+  @Input() gamePlatforms: [{ 'ps4': boolean }, { 'xbox': boolean }, { 'nin_switch': boolean }];
   selfRating: number;
   gamePlatform: string;
   gamerTag: string;
@@ -23,6 +24,7 @@ export class GamesModalComponent implements OnInit {
   constructor(private http: HttpService) { }
 
   ngOnInit() {
+    console.log(this.gamePlatforms)
   }
 
   closeModalFunc() {
