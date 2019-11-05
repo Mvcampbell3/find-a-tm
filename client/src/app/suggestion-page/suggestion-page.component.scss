@@ -1,0 +1,30 @@
+.container{
+  width: 90%;
+  min-width: 350px;
+  margin: auto;
+  background-color: whitesmoke;
+}
+
+.infoBox{
+  width: 60%;
+  min-width: 350px;
+  max-width: 600px;
+  padding: 20px;
+  margin: 0 auto;
+
+  input[type=text]{
+    width: 80%;
+    margin: 1em auto 0 auto;
+    display: block;
+    padding: 6px;
+  }
+}
+
+.addGameBtn{
+  border: none;
+  padding: 4px 8px;
+  background-color: steelblue;
+  color: white;
+  display: block;
+  margin: 1em auto;
+}

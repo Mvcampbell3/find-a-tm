@@ -1,6 +1,7 @@
 <div class="game-page">
   <div class="search">
     <input type="text" [(ngModel)]='searchTerm' placeholder="search" (ngModelChange)='searchGameTitles()'>
+    <a routerLink='/suggestion'>want to suggest a game?</a>
   </div>
   <div class="gameHolder" *ngIf='displayGames.length > 0'>
 

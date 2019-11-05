@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ListplayersComponent } from './listplayers/listplayers.component';
 import { GamesModalComponent } from './games-modal/games-modal.component';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { SuggestionPageComponent } from './suggestion-page/suggestion-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     ProfileComponent,
     ListplayersComponent,
     GamesModalComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    SuggestionPageComponent
   ],
   imports: [
     BrowserModule,
