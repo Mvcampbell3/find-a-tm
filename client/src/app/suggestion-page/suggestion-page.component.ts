@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class SuggestionPageComponent implements OnInit {
 
   gameTitle: string = '';
+  success: boolean = false;
 
   constructor(private http: HttpService, private router: Router) { }
 
@@ -32,6 +33,7 @@ export class SuggestionPageComponent implements OnInit {
           console.log(data)
           // Positive feedback
           this.gameTitle = '';
+          this.success = true;
         },
         (err: any) => {
           console.log(err)
@@ -57,6 +59,10 @@ export class SuggestionPageComponent implements OnInit {
 
   createSuggestion(game_title) {
 
+  }
+
+  closeModal() {
+    this.success = false;
   }
 
 }

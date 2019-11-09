@@ -1,7 +1,7 @@
 <div class="game-page">
   <div class="search">
     <input type="text" [(ngModel)]='searchTerm' placeholder="search" (ngModelChange)='searchGameTitles()'>
-    <a routerLink='/suggestion'>want to suggest a game?</a>
+    <a class='sugLink text-center' routerLink='/suggestion'>want to suggest a game?</a>
   </div>
   <div class="gameHolder" *ngIf='displayGames.length > 0'>
 
@@ -14,7 +14,6 @@
         <div class="game-details">
           <h4>{{ game.developer }}</h4>
           <h4>Team Game: {{ game.team_game ? 'Yes' : 'No' }}</h4>
-          <!-- <h4>PS4: {{ game.ps4 ? 'Yes' : 'No' }}</h4> -->
           <div class="platHolder">
             <div [ngClass]='game.ps4 ? "plat" : "hidden"'>ps4</div>
             <div [ngClass]='game.xbox ? "plat" : "hidden"'>xbox</div>
