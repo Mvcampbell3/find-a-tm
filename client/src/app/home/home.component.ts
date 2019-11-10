@@ -48,6 +48,9 @@ export class HomeComponent implements OnInit {
     if (event.target.classList.value === 'modalLogin') {
       this.showModal = false;
       this.signup = false;
+      this.email = '';
+      this.username = '';
+      this.password = '';
     }
   }
 
