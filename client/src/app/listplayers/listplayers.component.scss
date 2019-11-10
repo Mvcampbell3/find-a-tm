@@ -1,8 +1,33 @@
 .icon{
-  width: 256px;
+  width: 128px;
   height: auto;
   display: block;
   margin: 0em auto 1em auto;
+}
+
+.playerSort{
+  display: flex;
+  width: 350px;
+  justify-content: space-between;
+  margin: auto;
+  padding: 5px;
+  background-color: whitesmoke;
+  border-radius: 10px;
+
+  .sortField{
+    background-color: steelblue;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .selected{
+    border: 1px steelblue solid;
+    background-color: white;
+    color: steelblue;
+  }
 }
 
 .player{
@@ -12,7 +37,7 @@
   overflow: hidden;
   border-radius: 10px;
   margin: 0 auto 1em auto;
-  grid-template-columns: 1fr 50px 100px 200px;
+  grid-template-columns: 1fr 60px 100px 200px;
   box-shadow: 0px 5px 10px rgba(51, 51, 51, 0.219);
   transition: box-shadow .3s;
 

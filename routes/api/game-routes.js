@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/all', checkAuth, (req, res) => {
-  db.Game.find()
+  db.Game.find().sort({title: 1})
     .then(games => res.status(200).json(games))
     .catch(err => res.status(500).json(err))
 })

@@ -69,13 +69,24 @@ export class ProfileComponent implements OnInit {
   }
 
   getGamesList() {
-    const token = JSON.parse(localStorage.getItem('token-find-tm'))
     this.http.getUserProfile().subscribe(
       (data: any) => {
-        console.log(data)
-        console.log(data.userInfo)
         this.userInfo = data.userInfo;
-        this.matrixInfo = data.matrixInfo;
+        // secret sauce
+        let testArr = data.matrixInfo.sort((a, b) => {
+          let titleA = a.gameID.title.toUpperCase();
+          let titleB = b.gameID.title.toUpperCase();
+          if (titleA < titleB) {
+            return -1;
+          }
+          if (titleA > titleB) {
+            return 1;
+          }
+          return 0;
+        })
+
+        this.matrixInfo = testArr;
+        
       },
       err => console.log(err)
     )
@@ -168,14 +179,10 @@ export class ProfileComponent implements OnInit {
           },
           (err: any) => {
             console.log(err)
-            this.platformErrorMessages.push({msg: "Server unable to complete task, please try again"})
+            this.platformErrorMessages.push({ msg: "Server unable to complete task, please try again" })
           }
         )
       }
-
-
-
-
     }
   }
 

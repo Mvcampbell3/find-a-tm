@@ -13,6 +13,7 @@ export class ListplayersComponent implements OnInit {
 
   playersList: PlayerMatrix[] = [];
   gameInfo: object = null;
+  sortField: string = '';
 
   constructor(private http: HttpService, private router: Router, public userService: UserService) { }
 
@@ -67,4 +68,35 @@ export class ListplayersComponent implements OnInit {
     }
   }
 
+  setSortField(event) {
+    this.sortField = event.target.dataset.field;
+    const sortFieldDivs = [].slice.call(document.querySelectorAll('.sortField'));
+    sortFieldDivs.forEach(field => field.classList.remove('selected'));
+    event.target.classList.add('selected');
+    if (this.sortField !== 'selfRating') {
+      this.playersList.sort((a, b) => {
+        const first = a[this.sortField];
+        const second = b[this.sortField];
+        if (first < second) {
+          return -1
+        }
+        if (first > second) {
+          return 1;
+        }
+        return 0;
+      })
+    } else {
+      this.playersList.sort((a, b) => {
+        const first = a[this.sortField];
+        const second = b[this.sortField];
+        if (first < second) {
+          return 1
+        }
+        if (first > second) {
+          return -1;
+        }
+        return 0;
+      })
+    }
+  }
 }

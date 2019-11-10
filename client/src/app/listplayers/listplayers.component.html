@@ -2,6 +2,12 @@
   <h3 class="text-center upper-case">{{gameInfo.title}}</h3>
   <img class="icon" [src]='gameInfo.img_url' [alt]='gameInfo.img_url + " icon"'>
   <div class="players" *ngIf='playersList.length > 0'>
+    <div class="playerSort">
+      <div class="gamerTag sortField" (click)='setSortField($event)' data-field='gamerTag'>GamerTag</div>
+      <div class="skill sortField" (click)='setSortField($event)' data-field='selfRating'>Skill</div>
+      <div class="system sortField" (click)='setSortField($event)' data-field='platform'>System</div>
+      <div class="time sortField" (click)='setSortField($event)' data-field='latest'>Last Online</div>
+    </div>
     <h4 class="text-center">Players List</h4>
     <div class="player" *ngFor='let player of playersList, let i = index'>
       <p class="playerInfo tag">{{player.gamerTag}}</p>

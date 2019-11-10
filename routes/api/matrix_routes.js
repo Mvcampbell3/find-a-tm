@@ -20,9 +20,6 @@ router.delete('/testdeleteall', (req, res) => {
 })
 
 router.post('/newmatrix', checkAuth, (req, res) => {
-
-
-
   db.User.findById(req.userID)
     .then(user => {
 
@@ -54,9 +51,6 @@ router.post('/newmatrix', checkAuth, (req, res) => {
         res.status(422).json({ msg: 'User already has game matrix' })
       }
     })
-
-
-
 })
 
 router.delete('/delete/:id', checkAuth, (req, res) => {
