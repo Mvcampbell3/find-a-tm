@@ -55,6 +55,7 @@ export class ListplayersComponent implements OnInit {
         const diff: number = Math.abs(parseInt(userDate) - Date.now()) / 60000;
 
         console.log(diff.toFixed(4))
+        this.playersList[i].sortLatest = diff.toFixed(4);
 
         if (diff >= 3600) {
           this.playersList[i].latest = `${(diff / (60 * 24)).toFixed()} day(s) ago`;
@@ -87,15 +88,22 @@ export class ListplayersComponent implements OnInit {
       })
     } else {
       this.playersList.sort((a, b) => {
-        const first = a[this.sortField];
-        const second = b[this.sortField];
-        if (first < second) {
-          return 1
+        let first, second;
+        if (this.sortField === 'sortLatest') {
+          first = parseInt(a.sortLatest);
+          second = parseInt(b.sortLatest);
+          return (first - second);
+        } else {
+          first = a[this.sortField];
+          second = b[this.sortField];
+          if (first < second) {
+            return 1
+          }
+          if (first > second) {
+            return -1;
+          }
+          return 0;
         }
-        if (first > second) {
-          return -1;
-        }
-        return 0;
       })
     }
   }

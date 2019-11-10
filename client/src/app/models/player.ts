@@ -14,5 +14,6 @@ export interface PlayerMatrix {
     lastOnline: string,
     _id: string
   };
-  latest: string
+  latest: string,
+  sortLatest: string
 }
