@@ -90,8 +90,8 @@ export class ListplayersComponent implements OnInit {
       this.playersList.sort((a, b) => {
         let first, second;
         if (this.sortField === 'sortLatest') {
-          first = parseInt(a.sortLatest);
-          second = parseInt(b.sortLatest);
+          first = a.sortLatest;
+          second = b.sortLatest;
           return (first - second);
         } else {
           first = a[this.sortField];

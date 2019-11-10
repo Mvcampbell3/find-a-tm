@@ -8,12 +8,12 @@
       <div class="system sortField" (click)='setSortField($event)' data-field='platform'>System</div>
       <div class="time sortField" (click)='setSortField($event)' data-field='sortLatest'>Last Online</div>
     </div>
-    <h4 class="text-center">Players List</h4>
+    <h4 class="text-center space">Players List</h4>
     <div class="player" *ngFor='let player of playersList, let i = index'>
-      <p class="playerInfo tag">{{player.gamerTag}}</p>
-      <p class="playerInfo system">{{player.platform}}</p>
-      <p class="playerInfo rating">Self Rating: {{player.selfRating}}</p>
-      <p class="playerInfo time"><span class="mobile-hide">Last Online: </span>{{player.latest}}</p>
+      <div class="playerInfo tag">{{player.gamerTag}}</div>
+      <div class="playerInfo system">{{player.platform}}</div>
+      <div class="playerInfo rating">Self Rating: {{player.selfRating}}</div>
+      <div class="playerInfo time"><span class="mobile-hide">Last Online:</span>{{player.latest}}</div>
     </div>
   </div>
 </div>

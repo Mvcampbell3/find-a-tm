@@ -41,10 +41,10 @@
   box-shadow: 0px 5px 10px rgba(51, 51, 51, 0.219);
   transition: box-shadow .3s;
 
-  p{
+  .playerInfo{
     padding: 12px 8px;
     display: grid;
-    align-items: center;
+    place-items: center center;
   }
 
   .tag{
@@ -63,7 +63,12 @@
   }
 
   .time{
-    display: inline;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mobile-hide{
+    margin-right: 4px;
   }
 
   @media screen and (max-width: 700px) {
@@ -84,9 +89,9 @@
       color: white;
     }
 
-    .time{
-      display: block
-    }
+    // .time{
+    //   display: block
+    // }
         
   }
 }
