@@ -23,9 +23,11 @@ export class GamesComponent implements OnInit, OnDestroy {
   displayGames: Game[] = [];
   gameIDs: String[] = [];
   platformArray: string[] = [];
-  gamePlatforms: string[] = [];
+  gamePlatforms: { 'ps4': boolean, 'xbox': boolean, 'nin_switch': boolean };
 
   showButtons: boolean = false;
+
+  matrixInfo: object[] = [];
 
   searchTerm: string = '';
 
@@ -66,11 +68,14 @@ export class GamesComponent implements OnInit, OnDestroy {
         const matrixes = result.matrixInfo;
         const userInfo = result.userInfo;
         this.gameIDs = [];
+        console.log(matrixes)
+        this.matrixInfo = matrixes;
         matrixes.forEach((matrix) => this.gameIDs.push(matrix.gameID))
         console.log(this.gameIDs)
         this.platformArray = [];
         userInfo.platforms.forEach(plat => this.platformArray.push(plat))
         this.showButtons = true;
+        console.log(this.matrixInfo)
       },
       err => {
         console.log(err)

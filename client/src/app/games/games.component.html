@@ -24,18 +24,15 @@
       </div>
 
       <div [ngClass]="setButtonsClass()">
-        <button *ngIf='gameIDs.indexOf(game._id) === -1' class="gameBtn"
-          (click)='viewMatrix($event, game.title, game._id, [{"ps4":game.ps4}, {"xbox": game.xbox}, {"nin_switch": game.nin_switch}])'>Add
+        <button class="gameBtn"
+          (click)='viewMatrix($event, game.title, game._id, {"ps4":game.ps4, "xbox": game.xbox, "nin_switch": game.nin_switch})'>Add
           to Games</button>
-        <!-- Need to add the platform array for the game to the button click function -->
-        <!-- viewMatrix($event, game.title, game._id, game.platforms ? ) -->
-        <!-- Create the array in here based on game info object? -->
         <button class="gameBtn" [value]='game._id' (click)='viewPlayers($event)'>View Players</button>
       </div>
     </div>
 
     <app-games-modal *ngIf='showGamesModal' (closeModal)='closeMatrix($event)' [gameTitle]='gameTitle'
-      [modalTop]='modalTop' [gameID]='gameSendID' [platformArray]='platformArray' [gamePlatforms]='gamePlatforms'>
+      [modalTop]='modalTop' [gameID]='gameSendID' [platformArray]='platformArray' [gamePlatforms]='gamePlatforms' [matrixInfo]='matrixInfo'>
     </app-games-modal>
   </div>
 </div>

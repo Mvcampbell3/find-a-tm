@@ -11,8 +11,16 @@ export class GamesModalComponent implements OnInit {
   @Input() modalTop: number;
   @Input() gameTitle: string;
   @Input() gameID: string;
+  // platformArray refers to user saved systems and tags
   @Input() platformArray: { 'system': string, 'gamerTag': string }[];
-  @Input() gamePlatforms: [{ 'ps4': boolean }, { 'xbox': boolean }, { 'nin_switch': boolean }];
+  // gamePlatforms refers to what systems the game can be played on
+  @Input() gamePlatforms: { 'ps4': boolean, 'xbox': boolean, 'nin_switch': boolean };
+
+  @Input() matrixInfo: { _id: string, platform: string, gamerTag: string, gameID: string }[];
+
+  // displayPlatformArray refers to user tags being stripped of systems not supported by game
+  displayPlatformArray: object[] = [];
+
   selfRating: number;
   gamePlatform: string;
   gamerTag: string;
@@ -24,7 +32,34 @@ export class GamesModalComponent implements OnInit {
   constructor(private http: HttpService) { }
 
   ngOnInit() {
-    console.log(this.gamePlatforms)
+    // Also need to check on if game is saved on system with same tag
+    this.defineDisplayPlatforms();
+  }
+
+  defineDisplayPlatforms() {
+    let finalArr = [];
+    if (this.gamePlatforms.ps4) {
+      this.platformArray.filter(arr => arr.system === 'ps4').forEach(one => finalArr.push(one))
+    }
+    if (this.gamePlatforms.xbox) {
+      this.platformArray.filter(arr => arr.system === 'xbox').forEach(one => finalArr.push(one))
+    }
+    if (this.gamePlatforms.nin_switch) {
+      this.platformArray.filter(arr => arr.system === 'switch').forEach(one => finalArr.push(one))
+    }
+    this.matrixInfo.forEach((matrix, i) => {
+      for (let j = 0; j < finalArr.length; j++) {
+        if (matrix.platform === finalArr[j].system && matrix.gamerTag === finalArr[j].gamerTag && matrix.gameID === this.gameID) {
+          finalArr.splice(j, 1);
+        }
+      }
+    })
+    if (finalArr.length > 0) {
+      finalArr.forEach(one => this.displayPlatformArray.push(one))
+    } else {
+      // show user there are no available platforms to add
+      this.errorMessages.push({msg: 'There are no available platforms to save'})
+    }
   }
 
   closeModalFunc() {
