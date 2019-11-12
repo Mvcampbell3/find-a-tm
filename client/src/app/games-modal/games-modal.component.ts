@@ -58,7 +58,7 @@ export class GamesModalComponent implements OnInit {
       finalArr.forEach(one => this.displayPlatformArray.push(one))
     } else {
       // show user there are no available platforms to add
-      this.errorMessages.push({msg: 'There are no available platforms to save'})
+      this.errorMessages.push({msg: 'There are no available platforms to save'}, {msg: 'You can add one on your profile page'})
     }
   }
 
