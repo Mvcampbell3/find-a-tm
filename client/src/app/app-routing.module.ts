@@ -6,14 +6,17 @@ import { GamesComponent } from './games/games.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ListplayersComponent } from './listplayers/listplayers.component';
 import { SuggestionPageComponent } from './suggestion-page/suggestion-page.component';
+import { MissionComponent } from './mission/mission.component';
+
 
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "games", component: GamesComponent },
-  { path: "profile", component: ProfileComponent},
-  { path: 'listplayers', component: ListplayersComponent},
-  { path: 'suggestion', component: SuggestionPageComponent}
+  { path: "profile", component: ProfileComponent },
+  { path: 'listplayers', component: ListplayersComponent },
+  { path: 'suggestion', component: SuggestionPageComponent },
+  { path: 'mission', component: MissionComponent }
 ];
 
 @NgModule({

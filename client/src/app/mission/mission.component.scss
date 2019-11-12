@@ -1,0 +1,32 @@
+.bg{
+  width: 100%;
+  min-height: calc(100vh - 56.8px);
+  background-color: black;
+  background: url('https://images.pexels.com/photos/596750/pexels-photo-596750.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  background-size: cover;
+  background-position: center center;
+  padding: 2em 0;
+}
+
+.container{
+  width: 80%;
+  min-width: 350px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.897);
+  border-radius: 10px;
+  p{
+    margin-bottom: .5em;
+  }
+
+  a{
+    color: black;
+    display: block;
+    text-align: center;
+  }
+}
+
+.italics{
+  font-style: italic;
+  color: #333;
+}
