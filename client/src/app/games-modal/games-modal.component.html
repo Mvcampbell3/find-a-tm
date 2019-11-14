@@ -11,8 +11,8 @@
     </div>
     <div class="platforms" *ngIf='platformArray.length > 0'>
       <h5>Select Platform</h5>
-      <div *ngFor='let platform of displayPlatformArray' [ngClass]='setPlatformClass(platform.system, platform.gamerTag)'
-        (click)='setPlatform(platform.system, platform.gamerTag)' [attr.data-system]='platform.system'
+      <div *ngFor='let platform of displayPlatformArray' [ngClass]='setPlatformClass(platform.system, platform.gamerTag, platform.added)'
+        (click)='platform.added ? null : setPlatform(platform.system, platform.gamerTag)' [attr.data-system]='platform.system'
         [attr.data-gamerTag]='platform.gamerTag'>
         <span class='system'>{{platform.system}}</span><span class='gamerTag'>{{platform.gamerTag}}</span>
       </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpService } from '../services/http.service';
+import { platform } from 'os';
 
 @Component({
   selector: 'app-games-modal',
@@ -37,28 +38,34 @@ export class GamesModalComponent implements OnInit {
   }
 
   defineDisplayPlatforms() {
-    let finalArr = [];
+    const finalArr = [];
+    const relatedMatrixGame = this.matrixInfo.filter(matrix => matrix.gameID === this.gameID);
+    const ps4Tags = this.platformArray.filter(platform => platform.system === 'ps4');
+    const xboxTags = this.platformArray.filter(platform => platform.system === 'xbox');
+    const nin_switchTags = this.platformArray.filter(platform => platform.system === 'switch');
+
     if (this.gamePlatforms.ps4) {
-      this.platformArray.filter(arr => arr.system === 'ps4').forEach(one => finalArr.push(one))
+      ps4Tags.forEach(one => finalArr.push(one))
     }
     if (this.gamePlatforms.xbox) {
-      this.platformArray.filter(arr => arr.system === 'xbox').forEach(one => finalArr.push(one))
+      xboxTags.forEach(one => finalArr.push(one))
     }
     if (this.gamePlatforms.nin_switch) {
-      this.platformArray.filter(arr => arr.system === 'switch').forEach(one => finalArr.push(one))
+      nin_switchTags.forEach(one => finalArr.push(one))
     }
-    this.matrixInfo.forEach((matrix, i) => {
-      for (let j = 0; j < finalArr.length; j++) {
-        if (matrix.platform === finalArr[j].system && matrix.gamerTag === finalArr[j].gamerTag && matrix.gameID === this.gameID) {
-          finalArr.splice(j, 1);
+    finalArr.forEach(platform => platform.added = false);
+    relatedMatrixGame.forEach(related => {
+      finalArr.forEach(platform => {
+        if (related.platform === platform.system && related.gamerTag === platform.gamerTag) {
+          platform.added = true;
         }
-      }
+      })
     })
     if (finalArr.length > 0) {
       finalArr.forEach(one => this.displayPlatformArray.push(one))
     } else {
       // show user there are no available platforms to add
-      this.errorMessages.push({msg: 'You have already added this game'}, {msg: 'or you need to add a platform to your profile page'})
+      this.errorMessages.push({msg: 'Please add a platform to your profile that the game supports'})
     }
   }
 
@@ -109,11 +116,14 @@ export class GamesModalComponent implements OnInit {
     this.gamerTag = gamerTag;
   }
 
-  setPlatformClass(system, gamerTag) {
+  setPlatformClass(system, gamerTag, added) {
     const classes = {
       'platform': true,
-      'active': this.gamePlatform === system && this.gamerTag === gamerTag
+      'active': this.gamePlatform === system && this.gamerTag === gamerTag,
+      'added': added
     }
     return classes;
   }
+
+  
 }

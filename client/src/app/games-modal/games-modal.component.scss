@@ -39,8 +39,6 @@
   }
 }
 
-
-
 #left-end{
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -79,6 +77,12 @@
   background-color: darken(navy, 5%);
   color: white;
   }
+}
+
+.added{
+  // background-color: yellow;
+  color: #ddd;
+  background-color: lighten(whitesmoke, 20%);
 }
 
 .buttonArea{
