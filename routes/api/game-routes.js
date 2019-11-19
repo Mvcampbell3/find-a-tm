@@ -25,15 +25,31 @@ router.get('/all', checkAuth, (req, res) => {
 //     .catch(err => res.status(500).json(err))
 // })
 
+/*
+title: game.title,
+img_url: game.img_url,
+developer: game.developer,
+team_game: game.team_game,
+reviewed: game.reviewed,
+userID: game.userID,
+ps4: game.ps4,
+xbox: game.xbox,
+nin_switch: game.nin_switch,
+*/
+
 router.post('/newgame', checkAuth, (req, res) => {
-  const { title, developer, ps4, team_game } = req.body;
+  const { title, developer, ps4, xbox, nin_switch, team_game, reviewed, userID, img_url } = req.body;
 
   const newGame = new db.Game({
     title,
     developer,
     ps4,
+    xbox,
+    nin_switch,
     team_game,
-    userID: req.userID
+    reviewed,
+    userID,
+    img_url
   })
 
   newGame.save()

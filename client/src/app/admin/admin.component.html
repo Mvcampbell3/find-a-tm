@@ -1,4 +1,4 @@
-<div class="suggestionHolder" *ngIf='suggestions.length > 0'>
+<div class="suggestionHolder">
   <div *ngFor='let suggestion of suggestions' [ngClass]='suggestion.added ? "sug added":"sug"'>
     <h3 class='text-center'>{{suggestion.game_title}}</h3>
     <h4 class="text-center">userID: {{suggestion.userID}}</h4>
@@ -7,5 +7,26 @@
       <button class="sugBtn markAdd" (click)='changeAdded(suggestion._id, suggestion.added)'>{{suggestion.added ? 'Undo': 'Add'}}</button>
       <button class="sugBtn delBtn" (click)='deleteSuggestion(suggestion._id)'>Delete</button>
     </div>
+  </div>
+
+  <div class="add-game-modal">
+    <label for="title">Title</label><br>
+    <input type="text" placeholder="enter game title..." [(ngModel)]='game_title'><br>
+    <label for="developer">Developer</label><br>
+    <input type="text" placeholder="enter developer..." [(ngModel)]='developer'><br>
+    <label for="ps4">PS4 </label>
+    <input type="checkbox" [checked]='ps4' (change)='ps4 = !ps4'><br>
+    <label for="xbox">Xbox </label>
+    <input type="checkbox" [checked]='xbox' (change)='xbox = !xbox'><br>
+    <label for="switch">Switch </label>
+    <input type="checkbox" [checked]='switch' (change)='switch = !switch'><br>
+    <label for="team_game">Team Game </label>
+    <input type="checkbox" [checked]='team_game' (change)='team_game = !team_game'><br>
+    <label for="userID">userID</label><br>
+    <input type="text" placeholder='enter user ID...' [(ngModel)]='createUserID'><br>
+    <label for="img_url">Img Url</label><br>
+    <input type="text" placeholder='eventer img url...' [(ngModel)]='gameImgUrl'><br>
+
+    <button class="test" (click)='checkInput()'>Test</button>
   </div>
 </div>

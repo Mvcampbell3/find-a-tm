@@ -13,6 +13,15 @@ export class AdminComponent implements OnInit {
 
   suggestions: Suggestion[] = [];
 
+  game_title: string = '';
+  developer: string = '';
+  createUserID: string = '';
+  ps4: boolean = false;
+  xbox: boolean = false;
+  switch: boolean = false;
+  team_game: boolean = false;
+  gameImgUrl: string = '';
+
   constructor(private router: Router, private http: HttpService) { }
 
   ngOnInit() {
@@ -76,5 +85,24 @@ export class AdminComponent implements OnInit {
     )
   }
 
-  
+  checkInput() {
+    console.log(this.game_title, this.developer, this.createUserID, this.gameImgUrl)
+    console.log(this.ps4, this.xbox, this.switch, this.team_game)
+    console.log(this.addGameToDB())
+  }
+
+  addGameToDB() {
+    const game = {
+      game_title: this.game_title,
+      developer: this.developer, 
+      ps4: this.ps4,
+      xbox: this.xbox,
+      nin_switch: this.switch,
+      team_game: this.team_game,
+      img_url: this.gameImgUrl,
+      userID: this.createUserID
+    }
+
+    return game;
+  }
 }
