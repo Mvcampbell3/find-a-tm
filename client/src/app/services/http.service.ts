@@ -97,7 +97,21 @@ export class HttpService {
     return this._http.post('/api/suggestion/newsuggestion', { game_title }, { headers })
   }
 
+  checkAdmin() {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.get('/api/suggestion/checkAuth', { headers })
+  }
+
   getSuggestions() {
-    return this._http.get('/api/suggestion')
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.get('/api/suggestion', { headers })
+  }
+
+  deleteSuggestion(id) {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.delete(`/api/suggestion/delete/${id}`, { headers })
   }
 }

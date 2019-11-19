@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const moment = require('moment');
 
 const SuggestionSchema = new Schema({
   game_title: {
@@ -16,6 +17,11 @@ const SuggestionSchema = new Schema({
   added: {
     type: Boolean,
     default: false
+  },
+
+  created: {
+    type: String,
+    default: moment().format('x')
   }
 })
 

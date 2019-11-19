@@ -16,6 +16,7 @@ import { GamesModalComponent } from './games-modal/games-modal.component';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { SuggestionPageComponent } from './suggestion-page/suggestion-page.component';
 import { MissionComponent } from './mission/mission.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MissionComponent } from './mission/mission.component';
     GamesModalComponent,
     DeleteModalComponent,
     SuggestionPageComponent,
-    MissionComponent
+    MissionComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

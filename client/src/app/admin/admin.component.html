@@ -1,0 +1,8 @@
+<div class="suggestionHolder" *ngIf='suggestions.length > 0'>
+  <div *ngFor='let suggestion of suggestions'>
+    <h3>{{suggestion.game_title}}</h3>
+    <div class="buttonArea">
+      <button class="delBtn" (click)='deleteSuggestion(suggestion._id)'>Delete</button>
+    </div>
+  </div>
+</div>

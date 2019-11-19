@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ListplayersComponent } from './listplayers/listplayers.component';
 import { SuggestionPageComponent } from './suggestion-page/suggestion-page.component';
 import { MissionComponent } from './mission/mission.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent },
   { path: 'listplayers', component: ListplayersComponent },
   { path: 'suggestion', component: SuggestionPageComponent },
-  { path: 'mission', component: MissionComponent }
+  { path: 'mission', component: MissionComponent },
+  { path: 'admin', component: AdminComponent }
 ];
 
 @NgModule({
