@@ -11,9 +11,9 @@ router.use('*', (req, res, next) => {
 
 router.get('/checkAuth', checkAuth, (req, res) => {
   if (req.userID === testID) {
-    res.status(200).json({admin: true})
+    res.status(200).json({ admin: true })
   } else {
-    req.status(401).json({admin: false})
+    req.status(401).json({ admin: false })
   }
 })
 
@@ -48,16 +48,27 @@ router.post('/newsuggestion', checkAuth, (req, res) => {
     })
 })
 
-router.delete('/testdeleteall', (req, res) => {
-  db.Suggestion.remove()
-    .then(result => res.status(200).json(result))
-    .catch(err => res.status(500).json(err))
-})
+// router.delete('/testdeleteall', (req, res) => {
+//   db.Suggestion.remove()
+//     .then(result => res.status(200).json(result))
+//     .catch(err => res.status(500).json(err))
+// })
 
 router.delete('/delete/:id', checkAuth, (req, res) => {
   if (req.userID === testID) {
     db.Suggestion.findByIdAndRemove(req.params.id)
       .then(result => res.status(200).json({ deleted: true, result }))
+      .catch(err => res.status(404).json(err))
+  } else {
+    res.status(401).json({ admin: false })
+  }
+})
+
+router.put('/added/:id', checkAuth, (req, res) => {
+  console.log(req.body.added)
+  if (req.userID === testID) {
+    db.Suggestion.findByIdAndUpdate(req.params.id, { added: !req.body.added }, { new: true })
+      .then(result => res.status(200).json(result))
       .catch(err => res.status(404).json(err))
   } else {
     res.status(401).json({ admin: false })

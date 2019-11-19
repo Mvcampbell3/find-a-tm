@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { Suggestion } from "../models/dbSuggestion";
+import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -33,7 +34,7 @@ export class AdminComponent implements OnInit {
 
   checkAdmin() {
     this.http.checkAdmin().subscribe(
-      (data:any) => {
+      (data: any) => {
         console.log(data)
         this.getSuggestions();
       },
@@ -56,4 +57,24 @@ export class AdminComponent implements OnInit {
       }
     )
   }
+
+  displayTime(time) {
+    const timefix = new Date();
+    timefix.setTime(time)
+    return timefix.toDateString()
+  }
+
+  changeAdded(id, added) {
+    this.http.changeAddedSuggestion(id, added).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.getSuggestions();
+      },
+      (err: any) => {
+        console.log(err)
+      }
+    )
+  }
+
+  
 }

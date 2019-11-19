@@ -114,4 +114,10 @@ export class HttpService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this._http.delete(`/api/suggestion/delete/${id}`, { headers })
   }
+
+  changeAddedSuggestion(id, added) {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.put(`/api/suggestion/added/${id}`, { added }, { headers })
+  }
 }

@@ -1,8 +1,11 @@
 <div class="suggestionHolder" *ngIf='suggestions.length > 0'>
-  <div *ngFor='let suggestion of suggestions'>
-    <h3>{{suggestion.game_title}}</h3>
+  <div *ngFor='let suggestion of suggestions' [ngClass]='suggestion.added ? "sug added":"sug"'>
+    <h3 class='text-center'>{{suggestion.game_title}}</h3>
+    <h4 class="text-center">userID: {{suggestion.userID}}</h4>
+    <h5 class="text-center">created: {{displayTime(suggestion.created)}}</h5>
     <div class="buttonArea">
-      <button class="delBtn" (click)='deleteSuggestion(suggestion._id)'>Delete</button>
+      <button class="sugBtn markAdd" (click)='changeAdded(suggestion._id, suggestion.added)'>{{suggestion.added ? 'Undo': 'Add'}}</button>
+      <button class="sugBtn delBtn" (click)='deleteSuggestion(suggestion._id)'>Delete</button>
     </div>
   </div>
 </div>

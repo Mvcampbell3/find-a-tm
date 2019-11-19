@@ -1,0 +1,32 @@
+.sug{
+  background-color: #888;
+  max-width: 500px;
+  min-width: 350px;
+  margin: 1em auto;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+
+  .buttonArea{
+    width: fit-content;
+    margin: 1em auto 0 auto;
+
+    .sugBtn{
+      padding: 4px;
+      margin: 0px 4px;
+      border-radius: 5px;
+      border: none;
+      background-color: white;
+
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+}
+
+.added{
+  color: green;
+  background-color: #ccc;
+}
+
