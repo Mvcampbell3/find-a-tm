@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpService } from '../services/http.service';
-import { platform } from 'os';
 
 @Component({
   selector: 'app-games-modal',

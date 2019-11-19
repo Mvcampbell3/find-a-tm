@@ -151,3 +151,34 @@
   }
 }
 
+footer{
+  position: relative;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  padding: 2em;
+  justify-content: space-between;
+  max-width: 500px;
+  margin: 0 auto;
+
+  p.footer-text{
+    font-size: 12px;
+  }
+
+  a.fake-text{
+    font-size: 12px;
+    color: black;
+    text-decoration: none;
+  }
+
+  .right-footer a{
+    font-size: 12px;
+    color: #333;
+  }
+
+  .left-footer, .right-footer{
+    display: grid;
+    place-items: center center;
+  }
+}
+

@@ -30,9 +30,28 @@
         <button class="gameBtn" [value]='game._id' (click)='viewPlayers($event)'>View Players</button>
       </div>
     </div>
-
-    <app-games-modal *ngIf='showGamesModal' (closeModal)='closeMatrix($event)' [gameTitle]='gameTitle'
-      [modalTop]='modalTop' [gameID]='gameSendID' [platformArray]='platformArray' [gamePlatforms]='gamePlatforms' [matrixInfo]='matrixInfo'>
-    </app-games-modal>
   </div>
+
+  <app-games-modal *ngIf='showGamesModal' (closeModal)='closeMatrix($event)' [gameTitle]='gameTitle'
+    [modalTop]='modalTop' [gameID]='gameSendID' [platformArray]='platformArray' [gamePlatforms]='gamePlatforms'
+    [matrixInfo]='matrixInfo'>
+  </app-games-modal>
+
+  <footer>
+    <div class="left-footer">
+      <div class="wrap">
+        <p class="footer-text text-center">Created By: Michael Campbell</p>
+        <p class="footer-text text-center">&copy; 2019</p>
+        <a class='fake-text' routerLink='/'>Made for educationial purposes</a>
+      </div>
+    </div>
+
+    <div class="right-footer">
+      <div class="wrap">
+        <a href="https://mvcampbell3.com/" target='_blank'>Portfolio</a><br>
+        <a href="https://github.com/Mvcampbell3">Github</a><br>
+        <a href="https://www.linkedin.com/in/mvcampbell3/">Linkedin</a>
+      </div>
+    </div>
+  </footer>
 </div>
