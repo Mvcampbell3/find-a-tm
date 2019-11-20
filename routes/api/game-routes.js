@@ -83,13 +83,35 @@ router.get('/info/:id', checkAuth, (req, res) => {
 router.delete('/delete/:id', checkAuth, (req, res) => {
   // add check for my id;
   if (req.userID === process.env.ADMIN_ID) {
-    db.Game.findByIdAndRemove(req.params.id)
+
+    const promises = [
+      db.Matrix.find({ gameID: req.params.id }),
+      db.Game.find({ _id: req.params.id })
+    ]
+
+    Promise.all(promises)
       .then(result => {
-        res.status(200).json(result);
+        const matrixes = result[0];
+        const game = result[1];
+        let newPromises = [];
+        matrixes.forEach(matrix => {
+          newPromises.push(matrix.remove())
+        })
+        newPromises.push(game[0].remove());
+
+        Promise.all(newPromises)
+          .then(deleted => {
+            res.status(200).json(deleted);
+          })
+          .catch(err => {
+            res.status(422).json(err)
+          })
       })
       .catch(err => {
-        res.status(404).json(err)
+        res.json(err)
       })
+
+
   } else {
     res.status(401).json({ admin: false });
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { Suggestion } from "../models/dbSuggestion";
+import { Game } from "../models/game";
 
 @Component({
   selector: 'app-admin',
@@ -11,6 +12,13 @@ import { Suggestion } from "../models/dbSuggestion";
 export class AdminComponent implements OnInit {
 
   suggestions: Suggestion[] = [];
+  games: Game[] = [];
+
+  displaySuggestions: boolean = false;
+  displayGames: boolean = false;
+
+  gameDeleteOnce: boolean = false;
+  gameDeleteID: string = '';
 
   game_title: string = '';
   developer: string = '';
@@ -32,6 +40,8 @@ export class AdminComponent implements OnInit {
       (data: Suggestion[]) => {
         console.log(data)
         this.suggestions = data;
+        this.displayGames = false;
+        this.displaySuggestions = true;
         console.log(this.suggestions)
       },
       (err: any) => {
@@ -40,15 +50,48 @@ export class AdminComponent implements OnInit {
     )
   }
 
+  getGames() {
+    this.http.getAllGames().subscribe(
+      (data: Game[]) => {
+        console.log(data);
+        this.games = data;
+        this.displaySuggestions = false;
+        this.displayGames = true;
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    )
+  }
+
+  viewPlayers = (e) => {
+    this.http.gameViewPlayers = e.target.value;
+    this.router.navigate(['/listplayers'])
+  }
+
+  getInfo(info) {
+    switch (info) {
+      case 'games':
+        console.log('would look up games and display them');
+        this.getGames();
+        break;
+      case 'suggestions':
+        console.log('would look up suggestions and display them');
+        this.getSuggestions();
+        break;
+      default:
+        console.log('getInfo switch not working as expected')
+    }
+  }
+
   checkAdmin() {
     this.http.checkAdmin().subscribe(
       (data: any) => {
         console.log(data)
-        this.getSuggestions();
       },
       (err: any) => {
         console.log(err);
-        // this.router.navigate(['/games'])
+        this.router.navigate(['/games'])
       }
     )
   }
@@ -64,6 +107,30 @@ export class AdminComponent implements OnInit {
         console.log(err)
       }
     )
+  }
+
+  deleteGame(id) {
+    if (id !== this.gameDeleteID) {
+      console.log(id)
+      this.gameDeleteOnce = true;
+      this.gameDeleteID = id;
+    } else {
+      // call for game del http
+      this.http.deleteGame(id).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.getGames();
+        },
+        (err: any) => {
+          console.log(err)
+        }
+      )
+    }
+  }
+
+  cancelDelete() {
+    this.gameDeleteOnce = false;
+    this.gameDeleteID = '';
   }
 
   displayTime(time) {

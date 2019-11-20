@@ -1,20 +1,61 @@
 <div class="adminHolder">
 
   <div class="suggestion-side">
-    <div *ngFor='let suggestion of suggestions' [ngClass]='suggestion.added ? "sug added":"sug"'>
-      <h3 class='text-center'>{{suggestion.game_title}}</h3>
-      <h4 class="text-center">userID: {{suggestion.userID}}</h4>
-      <h5 class="text-center">created: {{displayTime(suggestion.created)}}</h5>
-      <div class="buttonArea">
-        <button class="sugBtn markAdd"
-          (click)='changeAdded(suggestion._id, suggestion.added)'>{{suggestion.added ? 'Undo': 'Add'}}</button>
-        <button class="sugBtn delBtn" (click)='deleteSuggestion(suggestion._id)'>Delete</button>
+
+    <div class="display-buttons">
+      <button class="dispBtn" (click)='getInfo("games")'>Games</button>
+      <button class="dispBtn" (click)='getInfo("suggestions")'>Suggestions</button>
+    </div>
+
+    <div class="suggestionsHolder" *ngIf='displaySuggestions'>
+      <div *ngFor='let suggestion of suggestions' [ngClass]='suggestion.added ? "sug added":"sug"'>
+        <h3 class='text-center'>{{suggestion.game_title}}</h3>
+        <h4 class="text-center">userID: {{suggestion.userID}}</h4>
+        <h5 class="text-center">created: {{displayTime(suggestion.created)}}</h5>
+        <div class="buttonArea">
+          <button class="sugBtn markAdd"
+            (click)='changeAdded(suggestion._id, suggestion.added)'>{{suggestion.added ? 'Undo': 'Add'}}</button>
+          <button class="sugBtn delBtn" (click)='deleteSuggestion(suggestion._id)'>Delete</button>
+        </div>
       </div>
     </div>
+
+    <div class="gamesHolder" *ngIf='displayGames'>
+      <div *ngFor='let game of games' class='game'>
+        <div class="game-top">
+          <img src={{game.img_url}} alt="">
+        </div>
+        <div class="game-body">
+          <h3>{{ game.title }}</h3>
+          <div class="game-details">
+            <h4>{{ game.developer }}</h4>
+            <h4>Team Game: {{ game.team_game ? 'Yes' : 'No' }}</h4>
+            <div class="platHolder">
+              <div [ngClass]='game.ps4 ? "plat" : "hidden"'>ps4</div>
+              <div [ngClass]='game.xbox ? "plat" : "hidden"'>xbox</div>
+              <div [ngClass]='game.nin_switch ? "plat" : "hidden"'>switch</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="gameBtnArea">
+
+          <button [ngClass]='gameDeleteID === game._id ? "gameBtn del":"gameBtn"' (click)='deleteGame(game._id)'>
+            {{gameDeleteID === game._id ? 'Are You Sure?': 'Delete'}}
+          </button>
+          <button [ngClass]='gameDeleteID === game._id ? "gameBtn can":"gameBtn"' [value]='game._id'
+            (click)='gameDeleteID === game._id ? cancelDelete() : viewPlayers($event)'>
+            {{gameDeleteID === game._id ? 'Cancel': 'View Players'}}
+          </button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div class="addGame-side">
-    <div class="add-game-modal">
+  <div class="add-game-panel">
+    <div class="add-game-form">
       <div class="input-group">
         <label for="title">Title</label><br>
         <input type="text" placeholder="enter game title..." [(ngModel)]='game_title'>
@@ -50,7 +91,7 @@
 
 
 
-      <button class="test" (click)='checkInput()'>Test</button>
+      <button class="test" (click)='checkInput()'>Add Game</button>
     </div>
   </div>
 

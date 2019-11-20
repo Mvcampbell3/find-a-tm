@@ -79,6 +79,12 @@ export class HttpService {
     return this._http.delete(`/api/matrix/delete/${matrixID}`, { headers })
   }
 
+  deleteGame(gameID) {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.delete(`/api/game/delete/${gameID}`, { headers });
+  }
+
   addPlatform(system, gamerTag) {
     const token = JSON.parse(localStorage.getItem('token-find-tm'));
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
