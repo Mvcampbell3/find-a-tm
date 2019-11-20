@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { Suggestion } from "../models/dbSuggestion";
-import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -49,7 +48,7 @@ export class AdminComponent implements OnInit {
       },
       (err: any) => {
         console.log(err);
-        this.router.navigate(['/games'])
+        // this.router.navigate(['/games'])
       }
     )
   }
@@ -94,7 +93,7 @@ export class AdminComponent implements OnInit {
   addGameToDB() {
     const game = {
       game_title: this.game_title,
-      developer: this.developer, 
+      developer: this.developer,
       ps4: this.ps4,
       xbox: this.xbox,
       nin_switch: this.switch,
@@ -102,7 +101,15 @@ export class AdminComponent implements OnInit {
       img_url: this.gameImgUrl,
       userID: this.createUserID
     }
+    console.log(game);
 
-    return game;
+    this.http.createGame(game).subscribe(
+      (data: any) => {
+        console.log(data)
+      },
+      (err: any) => {
+        console.log(err)
+      }
+    )
   }
 }

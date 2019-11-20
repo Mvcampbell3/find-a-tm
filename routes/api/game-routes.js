@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/all', checkAuth, (req, res) => {
-  db.Game.find().sort({title: 1})
+  db.Game.find().sort({ title: 1 })
     .then(games => res.status(200).json(games))
     .catch(err => res.status(500).json(err))
 })
@@ -38,10 +38,10 @@ nin_switch: game.nin_switch,
 */
 
 router.post('/newgame', checkAuth, (req, res) => {
-  const { title, developer, ps4, xbox, nin_switch, team_game, reviewed, userID, img_url } = req.body;
+  const { game_title, developer, ps4, xbox, nin_switch, team_game, reviewed, userID, img_url } = req.body.game;
 
   const newGame = new db.Game({
-    title,
+    title: game_title,
     developer,
     ps4,
     xbox,
@@ -77,7 +77,23 @@ router.get('/listplayers/:id', checkAuth, (req, res) => {
 router.get('/info/:id', checkAuth, (req, res) => {
   db.Game.findById(req.params.id)
     .then(game => res.status(200).json(game))
-    .catch(err => res.status(404).json({err}))
+    .catch(err => res.status(404).json({ err }))
+})
+
+router.delete('/delete/:id', checkAuth, (req, res) => {
+  // add check for my id;
+  if (req.userID === process.env.ADMIN_ID) {
+    db.Game.findByIdAndRemove(req.params.id)
+      .then(result => {
+        res.status(200).json(result);
+      })
+      .catch(err => {
+        res.status(404).json(err)
+      })
+  } else {
+    res.status(401).json({ admin: false });
+  }
+
 })
 
 
