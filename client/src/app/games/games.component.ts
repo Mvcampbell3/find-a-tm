@@ -26,8 +26,13 @@ export class GamesComponent implements OnInit, OnDestroy {
   gamePlatforms: { 'ps4': boolean, 'xbox': boolean, 'nin_switch': boolean };
 
   showButtons: boolean = false;
-
+  showIntro: boolean = false;
+  startUpIntro: boolean = false;
+  username: string = '';
+  userID: string = '';
   matrixInfo: object[] = [];
+
+  firstLoad: boolean = true;
 
   searchTerm: string = '';
 
@@ -76,6 +81,17 @@ export class GamesComponent implements OnInit, OnDestroy {
         userInfo.platforms.forEach(plat => this.platformArray.push(plat))
         this.showButtons = true;
         console.log(this.matrixInfo)
+
+        if (this.firstLoad) {
+          this.firstLoad = false;
+          if (userInfo.intro) {
+            this.showIntro = true;
+            this.username = userInfo.username
+            this.userID = userInfo._id
+          }
+        }
+
+
       },
       err => {
         console.log(err)
@@ -114,5 +130,19 @@ export class GamesComponent implements OnInit, OnDestroy {
 
   searchGameTitles() {
     this.displayGames = this.games.filter(game => game.title.toLowerCase().includes(this.searchTerm.toLowerCase()))
+  }
+
+  closeIntroModal(setIntroFalse) {
+    this.showIntro = false;
+    if (setIntroFalse) {
+      this.http.setUserIntroFalse(this.userID).subscribe(
+        (data: any) => {
+          console.log(data);
+        },
+        (err: any) => {
+          console.log(err)
+        }
+      )
+    }
   }
 }

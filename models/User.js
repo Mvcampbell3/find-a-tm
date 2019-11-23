@@ -36,6 +36,11 @@ const UserSchema = new Schema({
   gameIDs: {
     type: [Schema.Types.ObjectId],
     ref: 'Game'
+  },
+
+  intro: {
+    type: Boolean,
+    default: true
   }
 })
 

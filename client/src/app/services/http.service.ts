@@ -132,4 +132,10 @@ export class HttpService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this._http.post('/api/game/newgame', { game }, { headers })
   }
+
+  setUserIntroFalse(id) {
+    const token = JSON.parse(localStorage.getItem('token-find-tm'));
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.get(`/api/user/intro/${id}`, { headers });
+  }
 }

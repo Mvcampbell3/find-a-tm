@@ -17,6 +17,7 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { SuggestionPageComponent } from './suggestion-page/suggestion-page.component';
 import { MissionComponent } from './mission/mission.component';
 import { AdminComponent } from './admin/admin.component';
+import { FirstTimeModalComponent } from './first-time-modal/first-time-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AdminComponent } from './admin/admin.component';
     DeleteModalComponent,
     SuggestionPageComponent,
     MissionComponent,
-    AdminComponent
+    AdminComponent,
+    FirstTimeModalComponent
   ],
   imports: [
     BrowserModule,

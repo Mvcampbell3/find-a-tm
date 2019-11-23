@@ -157,26 +157,46 @@ export class AdminComponent implements OnInit {
     console.log(this.addGameToDB())
   }
 
-  addGameToDB() {
-    const game = {
-      game_title: this.game_title,
-      developer: this.developer,
-      ps4: this.ps4,
-      xbox: this.xbox,
-      nin_switch: this.switch,
-      team_game: this.team_game,
-      img_url: this.gameImgUrl,
-      userID: this.createUserID
-    }
-    console.log(game);
+  clearGameForm() {
+    this.game_title = "";
+    this.developer = "";
+    this.ps4 = false;
+    this.xbox = false;
+    this.switch = false;
+    this.team_game = false;
+    this.createUserID = "";
+    this.gameImgUrl = "";
+  }
 
-    this.http.createGame(game).subscribe(
-      (data: any) => {
-        console.log(data)
-      },
-      (err: any) => {
-        console.log(err)
+  addGameToDB() {
+
+    if (this.game_title, this.developer, this.createUserID) {
+      const game = {
+        game_title: this.game_title,
+        developer: this.developer,
+        ps4: this.ps4,
+        xbox: this.xbox,
+        nin_switch: this.switch,
+        team_game: this.team_game,
+        img_url: this.gameImgUrl,
+        userID: this.createUserID
       }
-    )
+      console.log(game);
+
+      this.http.createGame(game).subscribe(
+        (data: any) => {
+          console.log(data)
+          this.clearGameForm();
+          this.getGames();
+        },
+        (err: any) => {
+          console.log(err)
+        }
+      )
+    } else {
+      alert("please fill out all inputs for form")
+    }
+
+
   }
 }

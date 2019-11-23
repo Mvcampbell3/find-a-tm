@@ -37,6 +37,10 @@
     [matrixInfo]='matrixInfo'>
   </app-games-modal>
 
+  <app-first-time-modal *ngIf='showIntro' (closeIntro)='closeIntroModal($event)' [username]='username'>
+
+  </app-first-time-modal>
+
   <footer>
     <div class="left-footer">
       <div class="wrap">

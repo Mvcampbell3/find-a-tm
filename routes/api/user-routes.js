@@ -51,7 +51,7 @@ router.post('/signup', (req, res) => {
               })
               .catch(err => {
                 console.log(err);
-                res.status(422).json({err});
+                res.status(422).json({ err });
               })
           })
         })
@@ -201,6 +201,16 @@ router.put('/deleteplatform', checkAuth, (req, res) => {
     })
     .catch(err => {
       res.json(err)
+    })
+})
+
+router.get('/intro/:id', checkAuth, (req, res) => {
+  db.User.findByIdAndUpdate(req.params.id, { intro: false }, { new: true })
+    .then(result => {
+      res.status(200).json(result)
+    })
+    .catch(err => {
+      res.status(422).json(err)
     })
 })
 
