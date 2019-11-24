@@ -7,7 +7,7 @@ const path = require('path')
 
 // For creating seed db
 
-const seedDB = false;
+const seedDB = true;
 const db = require('./models');
 const gameSeeds = require('./seeds/gameSeed');
 const userSeeds = require('./seeds/userSeed');
